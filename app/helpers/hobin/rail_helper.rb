@@ -1,0 +1,2 @@
+module Hobin::RailHelper
+end
