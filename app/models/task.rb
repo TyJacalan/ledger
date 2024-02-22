@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :category
 
-  validates :name, presence: true, length: { maxium: 25}
+  validates :name, presence: true, length: { maximum: 25}
   validates :description, length: { maximum: 250 }
   validate :due_date_must_be_greater_than_the_present
 
