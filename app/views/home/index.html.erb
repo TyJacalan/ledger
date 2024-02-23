@@ -18,8 +18,25 @@
   <% @tasks.each do |task| %>
     <li>
       Name: <%= task.name %><br>
+      Category: <%= task.category.name if task.category %><br>
       Description: <%= task.description %><br>
       Due Date: <%= task.due_date %><br>
     </li>
+  <% end %>
+
+  <%= form_with model: @task, url: user_tasks_path(current_user), local: false do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Select a category" %>
+
+    <%= form.label :due_date %>
+    <%= form.date_field :due_date %>
+    
+    <%= form.submit 'Create Task' %>
   <% end %>
 </ul>
