@@ -1,12 +1,10 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:edit, :update, :destroy]
   
   def index
     @category = current_user.categories.all
   end
 
   def show
-    @category = current_user.categories.find(params[:id])
   end
 
   def new
@@ -23,7 +21,6 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = current_user.categories.find(params[:id])
   end
 
   def update
