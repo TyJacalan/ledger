@@ -1,1 +1,25 @@
 <h1>Home</h1>
+<div>
+  <ul>
+    <% @categories.each do |category| %>
+      <li> <%= category.name %></li>
+    <% end %>
+  </ul>
+
+  <%= form_with model: @category, url: user_categories_path(current_user), local: false do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.submit 'Create Category' %>
+  <% end %>
+
+</div>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      Name: <%= task.name %><br>
+      Description: <%= task.description %><br>
+      Due Date: <%= task.due_date %><br>
+    </li>
+  <% end %>
+</ul>
