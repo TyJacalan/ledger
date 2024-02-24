@@ -1,4 +1,4 @@
-<div class="flex flex-col h-full w-full gap-4 p-4">
+<div class="flex flex-col h-full w-full gap-4 p-4 text-sm text-muted-foreground">
   <div class="flex h-12 w-full items-center justify-start home-box">
     <div>Search bar placeholder</div>
   </div>
@@ -29,4 +29,26 @@
     </div>
 
   </div>
+
+  <div class="container" id="terminal-container">
+    <div class="flex h-10 w-full items-center justify-start home-box" id="terminal-helper">
+      <ul class="flex flex-row gap-4">
+        <li>^c: New category</li>
+        <li>^t: New task</li>
+      </ul>
+    </div>
+
+    <%= form_with(url: '/execute_command', method: "post", remote: true) do |form| %>
+      <%= render_input class: "hidden", name: :command, id: "terminal-category", placeholder: "Enter a category name"%>
+    <% end %>
+
+    <%= form_with(url: '/execute_command', method: "post", remote: true) do |form| %>
+      <%= render_input class: "hidden", name: :command, id: "terminal-task", placeholder: "Enter a task name"%>
+    <% end %>
+
+  </div>
+
+    <!-- Your JavaScript libraries -->
+    <script src="<%= asset_path('terminal.js') %>"></script>
+
 </div>
