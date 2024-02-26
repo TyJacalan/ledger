@@ -38,12 +38,13 @@
       </ul>
     </div>
 
-    <%= form_with(url: '/execute_command', method: "post", remote: true) do |form| %>
-      <%= render_input class: "hidden", name: :command, id: "terminal-category", placeholder: "Enter a category name"%>
+    <%= form_with model: @category, url: user_categories_path(current_user), method: "post", remote: true do |form| %>
+      <% form.text_field :name, class: "hidden", id: "terminal-category", placeholder: "Enter a category name" %>
     <% end %>
 
-    <%= form_with(url: '/execute_command', method: "post", remote: true) do |form| %>
+    <%= form_with model: @task, url: user_tasks_path(current_user), method: "post", remote: true do |form| %>
       <%= render_input class: "hidden", name: :command, id: "terminal-task", placeholder: "Enter a task name"%>
+      <% form.text_field :name, class: "hidden", id: "terminal-task", placeholder: "Enter a task name" %>
     <% end %>
 
   </div>

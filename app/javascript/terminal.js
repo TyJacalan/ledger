@@ -34,19 +34,20 @@ document.addEventListener('keydown', function(event) {
         formElement.classList.add('hidden');
     }
 
+	taskForm.addEventListener("keydown", function(event) {
+		if(event.key === "Enter"){
+			# prevent the form from submitting
+			event.preventDefault();
+		}
+	}
+
     // Create a new category
-    if (event.ctrlKey && event.key === 'c') {
+    if (event.ctrlKey && event.altKey && event.key === 'c') {
         initTerminal(categoryForm);
-        //submitOnKeypressEnter();
     }
 
     // Create a new task
-    if (event.ctrlKey && event.key === 't'){
+    if (event.ctrlKey && event.altKey && event.key === 't'){
         initTerminal(taskForm);
-        //submitOnKeypressEnter();
-    }
-
-    function submitOnKeypressEnter(currentInputIndex){
-        //submission logic here
     }
 });
