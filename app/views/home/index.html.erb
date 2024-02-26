@@ -43,9 +43,14 @@
     <% end %>
 
     <%= form_with model: @task, url: user_tasks_path(current_user), method: "post", remote: true do |form| %>
-      <%= render_input class: "hidden", name: :command, id: "terminal-task", placeholder: "Enter a task name"%>
-      <% form.text_field :name, class: "hidden", id: "terminal-task", placeholder: "Enter a task name" %>
+      <%= form.text_field :name, class: "terminal-task hidden", id: "terminal-task-name", placeholder: "Enter a task name"%>
+      <%= form.text_area :description, class: "terminal-task hidden", id: "terminal-task-description", placeholder: "Enter a task description" %>
+      <%= form.collection_select :category_id, Category.all, :id, :name, {}, { class: "terminal-task hidden", id: "terminal-task-category" } %>
+      <%= form.date_field :due_date, class: "terminal-task hidden", id: "terminal-task-date" %>
+      <%= form.submit class: "hidden" %>
     <% end %>
+
+
 
   </div>
 

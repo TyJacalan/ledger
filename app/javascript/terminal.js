@@ -1,24 +1,22 @@
 document.addEventListener('keydown', function(event) {
     const categoryForm = document.querySelector('#terminal-category');
-    const taskForm = document.querySelector('#terminal-task');
+    const taskForm = document.querySelectorAll('.terminal-task');
     const terminalHelper = document.querySelector('#terminal-helper');
-
 
     function initTerminal(formElement){
         event.preventDefault();
 
-        console.log(terminalHelper.classList.contains('hidden'));
-
-        const terminalUi = [categoryForm, taskForm, terminalHelper];
+        const terminalUi = [categoryForm, terminalHelper];
         terminalUi.forEach(ui => ui.classList.add('hidden'));
+	taskForm.forEach(input => input.classList.add('hidden'));
 
         formElement.classList.remove('hidden');
         formElement.focus();
 
         formElement.addEventListener('blur', function(){
-                showTerminalHelper()
+		// showTerminalHelper()
                 hideForm(formElement)
-            }           
+	}           
         );
     }
 
@@ -34,12 +32,27 @@ document.addEventListener('keydown', function(event) {
         formElement.classList.add('hidden');
     }
 
-	taskForm.addEventListener("keydown", function(event) {
-		if(event.key === "Enter"){
-			# prevent the form from submitting
-			event.preventDefault();
-		}
-	}
+	taskForm.forEach(function(input, index) {
+		input.addEventListener("keydown", function(event) {
+			if (event.key === "Enter") {
+				// prevent the form from submitting
+				//event.preventDefault();
+
+				// hide the current input
+				input.classList.add("hidden");
+
+				// Show the next input, or submit the form if it's the last input
+				if (index < taskForm.length - 1) {
+					event.preventDefault();
+					taskForm[index + 1].classList.remove("hidden");
+					taskForm[index + 1].focus();
+				} else {
+					console.log("submitting");
+					console.log(input.id);
+				}
+			}
+		});
+	});
 
     // Create a new category
     if (event.ctrlKey && event.altKey && event.key === 'c') {
@@ -48,6 +61,6 @@ document.addEventListener('keydown', function(event) {
 
     // Create a new task
     if (event.ctrlKey && event.altKey && event.key === 't'){
-        initTerminal(taskForm);
+        initTerminal(taskForm[0]);
     }
 });
