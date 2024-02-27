@@ -1,5 +1,5 @@
-<div class="flex flex-row h-full w-full items-start justify-start home-box" tabindex="3">
-  <ul>
+<div id="task-list-container" class="flex flex-row h-full w-full items-start justify-start home-box" tabindex="3">
+  <ul id="task-list">
     <% @tasks.each do |task| %>
       <li>
         Name: <%= task.name %><br>
