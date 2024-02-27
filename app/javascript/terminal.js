@@ -15,8 +15,8 @@ document.addEventListener('keydown', function(event) {
 		formElement.focus();
 
 		formElement.addEventListener('blur', function(){
-			showTerminalHelper()
 			hideForm(formElement)
+			showTerminalHelper();
 		});
 	}
 
@@ -29,9 +29,13 @@ document.addEventListener('keydown', function(event) {
 	}
 
 	function showTerminalHelper() {
-		terminalHelper.classList.add('flex');
-		terminalHelper.classList.remove('hidden');
+		if (!categoryFormInputs[0].classList.contains('hidden') || !taskFormInputs[0].classList.contains('hidden')) {
+			terminalHelper.classList.add('hidden');
+		} else {
+			terminalHelper.classList.remove('hidden');
+		}
 	}
+
 
 	function hideForm(formElement) {
 		formElement.classList.add('hidden');
@@ -80,14 +84,6 @@ document.addEventListener('keydown', function(event) {
 
 	if(event.ctrlKey && event.key === "c"){
 		initTerminal(commandForm);
-	}
-
-	if(event.ctrlKey && event.key === "C"){
-		initTerminal(categoryForm);
-	}
-
-	if(event.ctrlKey && event.key === "K"){
-		initTerminal(taskFormInputs[0]);
 	}
 
 });
