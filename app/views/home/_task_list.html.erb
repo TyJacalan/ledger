@@ -1,0 +1,14 @@
+<div class="flex flex-row h-full w-full items-start justify-start home-box" tabindex="3">
+  <ul>
+    <% @tasks.each do |task| %>
+      <li>
+        Name: <%= task.name %><br>
+        <% if task.category%>
+          <%= render_badge text: task.category.name %>
+        <% end %>
+        Description: <%= task.description %><br>
+        Due Date: <%= task.due_date %><br>
+      </li>
+    <% end %>
+  </ul>
+</div>

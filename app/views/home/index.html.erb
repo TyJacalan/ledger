@@ -1,60 +1,18 @@
 <div class="flex flex-col h-full w-full gap-4 p-4 text-sm text-muted-foreground">
-  <div class="flex h-12 w-full items-center justify-start home-box">
-    <div>Search bar placeholder</div>
-  </div>
-
+  <%= render 'search_bar' %>
+  
   <div class="flex flex-col md:flex-row h-full w-full gap-4">
-
-    <div class="flex h-12 md:h-full w-full md:w-3/12 px-4 py-2 home-box">
-      <ul class="flex flex-row md:flex-col h-full w-full items-start justify-start gap-4 overflow-y-auto">
-        <% @categories.each do |category| %>
-          <li> <%= category.name %></li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div class="flex flex-row h-full w-full items-start justify-start home-box">
-      <ul>
-        <% @tasks.each do |task| %>
-          <li>
-            Name: <%= task.name %><br>
-            <% if task.category%>
-              <%= render_badge text: task.category.name %>
-            <% end %>
-            Description: <%= task.description %><br>
-            Due Date: <%= task.due_date %><br>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
+    <%= render 'category_list' %>
+    <%= render 'task_list' %>
   </div>
 
-  <div class="container" id="terminal-container">
-    <div class="flex h-10 w-full items-center justify-start home-box" id="terminal-helper">
-      <ul class="flex flex-row gap-4">
-        <li>^c: New category</li>
-        <li>^t: New task</li>
-      </ul>
-    </div>
-
-    <%= form_with model: @category, url: user_categories_path(current_user), method: "post", remote: true do |form| %>
-      <% form.text_field :name, class: "hidden", id: "terminal-category", placeholder: "Enter a category name" %>
-    <% end %>
-
-    <%= form_with model: @task, url: user_tasks_path(current_user), method: "post", remote: true do |form| %>
-      <%= form.text_field :name, class: "terminal-task hidden", id: "terminal-task-name", placeholder: "Enter a task name"%>
-      <%= form.text_area :description, class: "terminal-task hidden", id: "terminal-task-description", placeholder: "Enter a task description" %>
-      <%= form.collection_select :category_id, Category.all, :id, :name, {}, { class: "terminal-task hidden", id: "terminal-task-category" } %>
-      <%= form.date_field :due_date, class: "terminal-task hidden", id: "terminal-task-date" %>
-      <%= form.submit class: "hidden" %>
-    <% end %>
-
-
-
+  <div class="container home-box" id="terminal-container" tabindex="4">
+    <%= render 'terminal' %>
+    <%= render 'category_form' %>
+    <%= render 'task_form' %>
   </div>
 
-    <!-- Your JavaScript libraries -->
-    <script src="<%= asset_path('terminal.js') %>"></script>
+  <!-- JavaScript libraries -->
+  <script src="<%= asset_path('terminal.js') %>"></script>
 
 </div>
