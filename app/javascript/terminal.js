@@ -1,65 +1,93 @@
 document.addEventListener('keydown', function(event) {
-    const categoryForm = document.querySelector('#terminal-category');
-    const taskForm = document.querySelectorAll('.terminal-task');
-    const terminalHelper = document.querySelector('#terminal-helper');
+	const categoryFormInputs = document.querySelectorAll('.terminal-category-input');
+	const taskFormInputs = document.querySelectorAll('.terminal-task-input');
+	const commandForm = document.querySelector('#terminal-command');
+	const terminalHelper = document.querySelector('#terminal-helper');
 
-    function initTerminal(formElement){
-        event.preventDefault();
+	const terminalUi = [categoryFormInputs, taskFormInputs, commandForm, terminalHelper];
 
-        const terminalUi = [categoryForm, terminalHelper];
-        terminalUi.forEach(ui => ui.classList.add('hidden'));
-	taskForm.forEach(input => input.classList.add('hidden'));
+	function initTerminal(formElement){
+		event.preventDefault();
 
-        formElement.classList.remove('hidden');
-        formElement.focus();
+		terminalUi.forEach(ui => hideUi(ui));
 
-        formElement.addEventListener('blur', function(){
-		// showTerminalHelper()
-                hideForm(formElement)
-	}           
-        );
-    }
+		formElement.classList.remove('hidden');
+		formElement.focus();
 
-    function showTerminalHelper() {
-        if (!categoryForm.classList.contains('hidden') || !taskForm.classList.contains('hidden')) {
-            terminalHelper.classList.add('hidden');
-        } else {
-            terminalHelper.classList.remove('hidden');
-        }
-    }
+		formElement.addEventListener('blur', function(){
+			showTerminalHelper()
+			hideForm(formElement)
+		});
+	}
 
-    function hideForm(formElement) {
-        formElement.classList.add('hidden');
-    }
+	function hideUi(ui){
+		if(ui && ui.forEach){
+			ui.forEach(el => el.classList.add('hidden'));
+		} else {
+			ui.classList.add('hidden')
+		};
+	}
 
-    taskForm.forEach(function(input, index) {
-	input.addEventListener("keydown", function(event) {
-		if (event.key === "Enter") {
-			// prevent the form from submitting
-			//event.preventDefault();
-			// hide the current input
-			input.classList.add("hidden");
+	function showTerminalHelper() {
+		terminalHelper.classList.add('flex');
+		terminalHelper.classList.remove('hidden');
+	}
 
-			// Show the next input, or submit the form if it's the last input
-			if (index < taskForm.length - 1) {
-				event.preventDefault();
-				taskForm[index + 1].classList.remove("hidden");
-				taskForm[index + 1].focus();
-			} else {
-				console.log("submitting");
-				console.log(input.id);
+	function hideForm(formElement) {
+		formElement.classList.add('hidden');
+	}
+
+	taskFormInputs.forEach(function(input, index) {
+		input.addEventListener("keydown", function(event) {
+			if (event.key === "Enter") {
+				input.classList.add("hidden");
+
+				// Show the next input, or submit the form if it's the last input
+				if (index < taskFormInputs.length - 1) {
+					event.preventDefault();
+					taskFormInputs[index + 1].classList.remove("hidden");
+					taskFormInputs[index + 1].focus();
+				} else {
+					console.log("submitting");
+					console.log(input.id);
+				}
 			}
+		});
+	});
+
+	commandForm.addEventListener("keydown", function(e){
+		if(e.key === "Enter"){
+			e.preventDefault();
+			const command = commandForm.value;
+			
+			switch(command){
+				case ':C':
+					initTerminal(categoryFormInputs[0]);
+					break;
+				case ':T':
+					initTerminal(taskFormInputs[0]);
+					break;
+				default:
+					commandForm.value = "No command found!";
+					commandForm.classList.add("hidden");
+					showTerminalHelper();
+					break;
+			}
+
+			commandForm.value = "";
 		}
 	});
-    });
 
-    // Create a new category
-    if (event.ctrlKey && event.altKey && event.key === 'c') {
-        initTerminal(categoryForm);
-    }
+	if(event.ctrlKey && event.key === "c"){
+		initTerminal(commandForm);
+	}
 
-    // Create a new task
-    if (event.ctrlKey && event.altKey && event.key === 't'){
-        initTerminal(taskForm[0]);
-    }
+	if(event.ctrlKey && event.key === "C"){
+		initTerminal(categoryForm);
+	}
+
+	if(event.ctrlKey && event.key === "K"){
+		initTerminal(taskFormInputs[0]);
+	}
+
 });

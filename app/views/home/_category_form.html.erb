@@ -1,3 +1,3 @@
-<%= form_with model: @category, url: user_categories_path(current_user), method: "post", remote: true do |form| %>
-  <% form.text_field :name, class: "hidden", id: "terminal-category", placeholder: "Enter a category name" %>
+<%= form_with model: @category, url: user_categories_path(current_user), method: "post", id: "terminal-category", remote: true do |form| %>
+  <% form.text_field :name, class: "terminal-category-input hidden", placeholder: "Enter a category name" %>
 <% end %>
