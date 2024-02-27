@@ -1,9 +1,13 @@
 /.bundle
 /db/*.sql
+/log/
 /log/*.log
 /tmp
+/tmp/
 config/database.yml
 config/google_analytics.yml
 .DS_Store
 /nbproject/
 public/assets/**
+app/assets/builds/*
+
