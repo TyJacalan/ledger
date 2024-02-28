@@ -48,7 +48,7 @@ document.addEventListener('keydown', function(event) {
 
 				// Show the next input, or submit the form if it's the last input
 				if (index < taskFormInputs.length - 1) {
-					event.preventDefault();
+					//event.preventDefault();
 					taskFormInputs[index + 1].classList.remove("hidden");
 					taskFormInputs[index + 1].focus();
 				} else {
