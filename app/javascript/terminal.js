@@ -1,48 +1,59 @@
-document.addEventListener('keydown', function(event) {
-	const categoryFormInputs = document.querySelectorAll('.terminal-category-input');
-	const taskFormInputs = document.querySelectorAll('.terminal-task-input');
-	const commandForm = document.querySelector('#terminal-command');
-	const terminalHelper = document.querySelector('#terminal-helper');
+const terminal = {
+	categoryFormInputs: document.querySelectorAll('.terminal-category-input'),
+	taskFormInputs: document.querySelectorAll('.terminal-task-input'),
+	commandForm: document.querySelector('#terminal-command'),
+	terminalHelper: document.querySelector('#terminal-helper'),
+	terminalUi: [],
 
-	const terminalUi = [categoryFormInputs, taskFormInputs, commandForm, terminalHelper];
+	initCommandForm() {
+		this.initUi(this.commandForm);
+	},
 
-	function initTerminal(formElement){
+	initCategoryForm() {
+		this.initUi(this.categoryFormInputs[0]);
+	},
+
+	initTaskForm() {
+		this.initUi(this.taskFormInputs[0]);
+	},
+
+	initHelper() {
+		this.commandForm.classList.add("hidden");
+
+		if (!this.categoryFormInputs[0].classList.contains("hidden") || !this.taskFormInputs[0].classList.contains("hidden")) {
+			this.terminalHelper.classList.add("hidden");
+		} else {
+			this.terminalHelper.classList.remove("hidden");
+		}
+	},
+
+	hideUi(ui) {
+		if (ui && ui.forEach) {
+			ui.forEach(el => el.classList.add("hidden"));
+		} else {
+			ui.classList.add("hidden");
+		}
+	},
+
+	initUi(formElement) {
 		event.preventDefault();
 
-		terminalUi.forEach(ui => hideUi(ui));
+		// hide all interfaces
+		this.terminalUi.forEach(ui => this.hideUi(ui));
 
-		formElement.classList.remove('hidden');
+		// unhide and focus current interface and add events
+		formElement.classList.remove("hidden");
 		formElement.focus();
-
-		formElement.addEventListener('blur', function(){
-			hideForm(formElement)
-			showTerminalHelper();
+		formElement.addEventListener('blur', () => {
+			this.hideUi(formElement);
+			this.initHelper();
 		});
 	}
+};
 
-	function hideUi(ui){
-		if(ui && ui.forEach){
-			ui.forEach(el => el.classList.add('hidden'));
-		} else {
-			ui.classList.add('hidden')
-		};
-	}
+terminal.terminalUi = [terminal.categoryFormInputs, terminal.taskFormInputs, terminal.commandForm, terminal.terminalHelper];
 
-	function showTerminalHelper() {
-		commandForm.classList.add("hidden");
-		
-		if (!categoryFormInputs[0].classList.contains('hidden') || !taskFormInputs[0].classList.contains('hidden')) {
-			terminalHelper.classList.add('hidden');
-		} else {
-			terminalHelper.classList.remove('hidden');
-		}
-	}
-
-
-	function hideForm(formElement) {
-		formElement.classList.add('hidden');
-	}
-
+function processTaskForm(taskFormInputs) {
 	taskFormInputs.forEach(function(input, index) {
 		input.addEventListener("keydown", function(event) {
 			if (event.key === "Enter") {
@@ -60,39 +71,28 @@ document.addEventListener('keydown', function(event) {
 			}
 		});
 	});
+}
 
-	commandForm.addEventListener("keydown", function(e){
-		if(e.key === "Enter"){
-			e.preventDefault();
-			const command = commandForm.value;
-			
-			switch(command){
-				case ':C':
-					initTerminal(categoryFormInputs[0]);
-					break;
-				case ':T':
-					initTerminal(taskFormInputs[0]);
-					break;
-				case ':E':
-					handleEdit();
-					showTerminalHelper();
-					break;
-				case ':D':
-					handleDelete();
-					showTerminalHelper();
-					break;
-				default:
-					commandForm.value = "No command found!";
-					showTerminalHelper();
-					break;
-			}
-
-			commandForm.value = "";
-		}
-	});
-
-	if(event.ctrlKey && event.key === "c"){
-		initTerminal(commandForm);
+function handleCommandForm(command) {
+	switch (command) {
+		case ':C':
+			terminal.initUi(terminal.categoryFormInputs[0]);
+			break;
+		case ':T':
+			terminal.initUi(terminal.taskFormInputs[0]);
+			processTaskForm(terminal.taskFormInputs);
+			break;
+		case ':E':
+			handleEdit();
+			terminal.initHelper();
+			break;
+		case ':D':
+			handleDelete();
+			terminal.initHelper();
+			break;
+		default:
+			terminal.initHelper();
+			break;
 	}
+}
 
-});

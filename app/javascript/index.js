@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-	handleNavigate('task-list-container', 'ul');
-	handleNavigate('category-list-container', 'ul');
-	handleFocus();
+	function initializeEventHandlers(){
+		handleNavigate('task-list-container', 'ul');
+		handleNavigate('category-list-container', 'ul');
+		handleFocus();
+		handleKeydown();
+	};
+
+	initializeEventHandlers();
 });
