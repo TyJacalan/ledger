@@ -77,6 +77,10 @@ document.addEventListener('keydown', function(event) {
 					handleEdit();
 					showTerminalHelper();
 					break;
+				case ':D':
+					handleDelete();
+					showTerminalHelper();
+					break;
 				default:
 					commandForm.value = "No command found!";
 					showTerminalHelper();
