@@ -29,6 +29,8 @@ document.addEventListener('keydown', function(event) {
 	}
 
 	function showTerminalHelper() {
+		commandForm.classList.add("hidden");
+		
 		if (!categoryFormInputs[0].classList.contains('hidden') || !taskFormInputs[0].classList.contains('hidden')) {
 			terminalHelper.classList.add('hidden');
 		} else {
@@ -48,7 +50,7 @@ document.addEventListener('keydown', function(event) {
 
 				// Show the next input, or submit the form if it's the last input
 				if (index < taskFormInputs.length - 1) {
-					//event.preventDefault();
+					event.preventDefault();
 					taskFormInputs[index + 1].classList.remove("hidden");
 					taskFormInputs[index + 1].focus();
 				} else {
@@ -71,9 +73,12 @@ document.addEventListener('keydown', function(event) {
 				case ':T':
 					initTerminal(taskFormInputs[0]);
 					break;
+				case ':E':
+					handleEdit();
+					showTerminalHelper();
+					break;
 				default:
 					commandForm.value = "No command found!";
-					commandForm.classList.add("hidden");
 					showTerminalHelper();
 					break;
 			}
