@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: :edit
   
   def index
     @category = current_user.categories.all
@@ -21,6 +23,9 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.js { render partial: '/home/category_edit_form', locals: { category: @category } }
+    end
   end
 
   def update
