@@ -86,7 +86,7 @@ function handleCommandForm(command) {
 			break;
 		case ':E':
 			activeEl.dataset.categoryId ? handleCategoryEdit() : handleTaskEdit();
-			
+
 			terminal.initHelper();
 			break;
 		case ':D':

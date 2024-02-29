@@ -1,9 +1,9 @@
 <div>
-  <div>Hello World</div>
   <%= form_with id: "task-edit-form", model: @task, url: user_task_path(current_user, @task), method: "patch", remote: true do |form| %>
     <%= form.text_field :name %>
     <%= form.collection_select :category_id, Category.all, :id, :name, {} %>
     <%= form.text_area :description %>
     <%= form.date_field :due_date %>
+    <%= form.submit "Edit" %>
   <% end %>
 </div>

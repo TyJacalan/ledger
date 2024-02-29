@@ -3,7 +3,7 @@ function handleTaskEdit(e){
 	const userId = taskItem.dataset.userId;
 	const taskId = taskItem.dataset.taskId;
 
-	//App.removeEventHandlers();
+	App.removeEventHandlers();
 
 	fetch(`/users/${userId}/tasks/${taskId}/edit`)
 		.then(response => response.text())
