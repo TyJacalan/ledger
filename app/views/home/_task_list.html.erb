@@ -1,7 +1,7 @@
 <div id="task-list-container" class="flex flex-row h-full w-full items-start justify-start home-box" tabindex="3">
   <ul id="task-list">
     <% @tasks.each do |task| %>
-      <li>
+      <li data-user-id="<%= task.user_id %>" data-task-id="<%= task.id %>" <%= task.name %></li>
         Name: <%= task.name %><br>
         <% if task.category%>
           <%= render_badge text: task.category.name %>

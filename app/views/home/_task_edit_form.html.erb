@@ -1,51 +1,9 @@
 <div>
-  <%- form_with model: @task do |form| %>
+  <div>Hello World</div>
+  <%= form_with id: "task-edit-form", model: @task, url: user_task_path(current_user, @task), method: "patch", remote: true do |form| %>
     <%= form.text_field :name %>
-    <%= form.collection_select :category_id, Category.all, :name, {} %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, {} %>
     <%= form.text_area :description %>
     <%= form.date_field :due_date %>
   <% end %>
-</div>document.addEventListener('DOMContentLoaded', function() {
-	setupListNavigation('task-list-container', 'ul');
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-	setupListNavigation('category-list-container', 'ul');
-});
-
-function setupListNavigation(containerId, listTagName) {
-	const container = document.getElementById(containerId);
-	const list = container.querySelector(listTagName);
-	let focusedIndex = -1;
-	let previousItem = null;
-
-	container.addEventListener('keydown', function(e) {
-		if (e.key === 'ArrowUp' || e.key === "ArrowLeft") {
-			e.preventDefault();
-			if (focusedIndex > 0) {
-				// Remove class from previous item
-				if (previousItem) {
-					previousItem.classList.remove('active');
-				}
-				focusedIndex--;
-				const listItem = list.children[focusedIndex];
-				listItem.children[focusedIndex].classList.add('active');
-
-				previousItem = listItem;
-			}
-		} else if (e.key === 'ArrowDown' || e.key === "ArrowRight") {
-			e.preventDefault();
-			if (focusedIndex < list.children.length - 1) {
-				// Remove class from previous item
-				if (previousItem) {
-					previousItem.classList.remove('active');
-
-				}
-				focusedIndex++;
-				const listItem = list.children[focusedIndex];
-				listItem.classList.add('active');
-				previousItem = listItem;
-			}
-		}
-	});
-}
+</div>

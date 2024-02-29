@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :verify_authenticity_token, only: :edit
+  
   def index 
     @tasks = current_user.tasks.all
   end
@@ -23,6 +24,9 @@ class TasksController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.js { render partial: '/home/task_edit_form', locals: { task: @task } }
+    end
   end
 
   def update
@@ -41,7 +45,7 @@ class TasksController < ApplicationController
   private
 
   def set_task
-    @task = current_User.tasks.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def task_params
