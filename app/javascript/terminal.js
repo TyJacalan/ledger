@@ -74,6 +74,8 @@ function processTaskForm(taskFormInputs) {
 }
 
 function handleCommandForm(command) {
+	const activeEl = document.querySelector(".active");
+
 	switch (command) {
 		case ':C':
 			terminal.initUi(terminal.categoryFormInputs[0]);
@@ -83,11 +85,13 @@ function handleCommandForm(command) {
 			processTaskForm(terminal.taskFormInputs);
 			break;
 		case ':E':
-			handleEdit();
+			activeEl.dataset.categoryId ? handleCategoryEdit() : handleTaskEdit();
+			
 			terminal.initHelper();
 			break;
 		case ':D':
-			handleDelete();
+			activeEl.dataset.categoryId ? handleCategoryDelete() : handleTaskDelete();
+			
 			terminal.initHelper();
 			break;
 		default:

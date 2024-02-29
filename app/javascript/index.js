@@ -10,7 +10,6 @@ const App = {
 	},
 
 	removeEventHandlers: function() {
-		console.log('removed');
 		this.taskListContainer.removeEventListener("keydown", this.handleTaskListKeyDown.bind(this));
 		this.categoryListContainer.removeEventListener("keydown", this.handleCategoryListKeyDown.bind(this));
 		
