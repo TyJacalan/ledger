@@ -43,21 +43,36 @@
 		--input: 217.2 32.6% 17.5%;
 		--ring: 224.3 76.3% 48%;
 	}
-}
 
-@layer base {
 	* {
-		@apply border-border;
-
+		@apply box-border;
 	}
+
 	body {
 		@apply bg-background text-foreground;
 	}
+
+	select {
+		@apply bg-transparent border-none outline-none focus:border-none focus:outline-none focus:ring-0 py-0 text-sm;
+	}
+
+	textarea {
+		@apply bg-transparent p-0 m-0 outline-none border-none focus:outline-none border-none text-sm;
+	}
+
+	option {
+		@apply bg-background-red-400 text-foreground text-sm;
+	}
 }
+
 
 @layer components {
 	.home-box {
-		@apply px-4 py-2 rounded-md border border-input
+		@apply px-4 py-2 rounded-md border border-input;
+	}
+
+	#category-edit-form input[type="text"], #task-edit-form input[type="text"]{
+		@apply h-fit bg-transparent text-sm text-muted-foreground px-0 py-0 outline-none border-hidden focus:outline-none focus:border-hidden focus:ring-0;
 	}
 }
 
@@ -65,5 +80,11 @@
 	.active {
 		@apply bg-background/50 brightness-125
 	}
+
+	.custom-datepicker::-webkit-calendar-picker-indicator {
+		fiter: invert(100%);
+	}
+
 }
+
 

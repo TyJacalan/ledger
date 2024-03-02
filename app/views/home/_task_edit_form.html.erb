@@ -1,9 +1,10 @@
 <div>
-  <%= form_with id: "task-edit-form", model: @task, url: user_task_path(current_user, @task), method: "patch", remote: true do |form| %>
+  <%= form_with id: "task-edit-form", class: "flex flex-row items-start justify-start text-sm", model: @task, url: user_task_path(current_user, @task), method: "patch", remote: true do |form| %>
     <%= form.text_field :name %>
     <%= form.collection_select :category_id, Category.all, :id, :name, {} %>
     <%= form.text_area :description %>
-    <%= form.date_field :due_date %>
+    <%= form.date_field :due_date, class: "bg-background border-none outline-none focus:border-none focus-outline-none focus:ring-0 text-sm after:bg-foreground after:text-foreground custom-datepicker"%>
     <%= form.submit ""%>
   <% end %>
 </div>
+
