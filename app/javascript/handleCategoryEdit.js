@@ -3,16 +3,26 @@ function handleCategoryEdit(e){
 	const userId = categoryItem.dataset.userId;
 	const categoryId = categoryItem.dataset.categoryId;
 
-	App.removeEventHandlers();
-
 	fetch(`/users/${userId}/categories/${categoryId}/edit`)
 		.then(response => response.text())
 		.then(data => {
 			categoryItem.innerHTML = data;
 			const editForm = document.querySelector("#category-edit-form");
 
-			//Reinitialize navigation
-			App.initializeEventHandlers();
+			App.removeEventHandlers();
+
+			const firstInput = editForm.querySelectorAll("input")[2];
+			if(firstInput){
+				firstInput.focus();
+			}
+
+			editForm.addEventListener("submit", function(e) {
+				e.preventDefault();
+
+				//Reinitialize navigation
+				App.initializeEventHandlers();
+		
+			});
 		})
 		.catch(error => console.error('Error fetching category edit form:', error));
 };

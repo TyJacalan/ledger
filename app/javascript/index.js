@@ -3,16 +3,24 @@ const App = {
 	categoryListContainer: null,
 
 	initializeEventHandlers: function() {
-		this.taskListContainer.addEventListener("keydown", this.handleTaskListKeyDown.bind(this));
-		this.categoryListContainer.addEventListener("keydown", this.handleCategoryListKeyDown.bind(this));
+		this.taskListKeyDownHandler = this.handleTaskListKeyDown.bind(this);
+		this.categoryListKeyDownHandler = this.handleCategoryListKeyDown.bind(this);
+
+		this.taskListContainer.addEventListener("keydown", this.taskListKeyDownHandler);
+		this.categoryListContainer.addEventListener("keydown", this.categoryListKeyDownHandler);
+		
 		handleFocus();
+		
 		handleKeydown();
 	},
 
 	removeEventHandlers: function() {
-		this.taskListContainer.removeEventListener("keydown", this.handleTaskListKeyDown.bind(this));
-		this.categoryListContainer.removeEventListener("keydown", this.handleCategoryListKeyDown.bind(this));
-		
+		this.taskListContainer.removeEventListener("keydown", this.taskListKeyDownHandler);
+		this.categoryListContainer.removeEventListener("keydown", this.categoryListKeyDownHandler);
+
+		// Reset event handler references
+		this.taskListKeyDownHandler = null;
+		this.categoryListKeyDownHandler = null;
 	},
 
 	handleTaskListKeyDown: function(e) {
