@@ -17,8 +17,6 @@ function handleCategoryEdit(e){
 			}
 
 			editForm.addEventListener("submit", function(e) {
-				e.preventDefault();
-
 				//Reinitialize navigation
 				App.initializeEventHandlers();
 		
