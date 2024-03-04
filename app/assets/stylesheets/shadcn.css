@@ -52,17 +52,6 @@
 		@apply bg-background text-foreground;
 	}
 
-	select {
-		@apply bg-transparent border-none outline-none focus:border-none focus:outline-none focus:ring-0 py-0 text-sm;
-	}
-
-	textarea {
-		@apply bg-transparent p-0 m-0 outline-none border-none focus:outline-none border-none text-sm;
-	}
-
-	option {
-		@apply bg-background-red-400 text-foreground text-sm;
-	}
 }
 
 
@@ -73,6 +62,24 @@
 
 	#category-edit-form input[type="text"], #task-edit-form input[type="text"]{
 		@apply h-fit bg-transparent text-sm text-muted-foreground px-0 py-0 outline-none border-hidden focus:outline-none focus:border-hidden focus:ring-0;
+	}
+
+	#task-list li, #task-edit-form {
+		display: grid;
+		grid-template-columns: repeat(7, minmax(0, 1fr));
+		align-items: center;
+		gap: 1rem;
+		height: 2rem;
+	}
+
+	#task-list li div, #task_name, #task_description, #task_due_date {
+		grid-column: span 2 / span 2;
+		overflow-y: hidden;
+		overflow-x: auto;
+	}
+
+	#task-list li div:nth-child(2), #task_category_id {
+		grid-column: span 1 / span 1;
 	}
 }
 
