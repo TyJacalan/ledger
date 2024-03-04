@@ -1,5 +1,6 @@
 <%= form_with model: @category, id: "category-edit-form", url: user_category_path(current_user, @category), method: "patch", class: "", remote: true do |form| %>
   <%= form.text_field :name, size: @category.name.length - 2%>
+  <%= form.submit ""%>
 <% end %>
 
 
