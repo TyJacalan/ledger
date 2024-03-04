@@ -5,5 +5,7 @@ class HomeController < ApplicationController
     
     @category = Category.new
     @task = Task.new
+
+    @due_dates = current_user.tasks.distinct.pluck(:due_date)
   end
 end
