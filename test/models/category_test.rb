@@ -20,4 +20,3 @@ class CategoryTest < ActiveSupport::TestCase
     assert category.save, "Saved the category successfully."
   end
 end
-
