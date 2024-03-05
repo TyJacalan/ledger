@@ -5,7 +5,7 @@ function handleTaskDelete() {
 
 	const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
-	fetch(`/users/${userId}/task/${taskId}`, {
+	fetch(`/users/${userId}/tasks/${taskId}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
@@ -14,7 +14,6 @@ function handleTaskDelete() {
 	})
 		.then(response => response.text())
 		.then(data => {
-			console.log('Task deleted successfully:', data);
 			taskItem.remove();
 		})
 		.catch(error => console.error('Error deleting task:', error));
