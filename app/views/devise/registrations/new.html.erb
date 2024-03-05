@@ -3,6 +3,17 @@
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
+    
+    <% if resource.errors.any? %>
+      <% resource.errors.full_messages.each do |message| %>
+        <%= render_toast header: "Invalid Signup",
+          id: "alert_toast",
+          description: message,
+          variant: :destructive,
+          auto: false,
+          class: "hidden" %>
+      <% end %>
+    <% end %>
 
     <div class="field flex flex-col gap-2">
       <%= f.label :email %>
