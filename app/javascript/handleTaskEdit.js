@@ -29,4 +29,3 @@ function handleTaskEdit(e){
         })
         .catch(error => console.error('Error fetching task edit form:', error));
 }
-a

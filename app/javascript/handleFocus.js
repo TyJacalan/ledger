@@ -3,8 +3,7 @@ function handleFocus(){
 
 	homeBoxes.forEach(function(box, index) {
 		box.addEventListener('focus', function(e) {
-			const focusedElement = e.target;
-			//console.log('Currently focused element:', focusedElement.tabIndex);
+			box.classList.add("focused");
 		});
 	});
 };

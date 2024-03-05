@@ -8,5 +8,9 @@ function handleKeydown(){
 		if(e.key === "Enter" && !commandForm.classList.contains("hidden")){
 			handleCommandForm(commandForm.value);
 		}
+
+		if(e.key === "Enter" && App.dueDateListContainer.classList.contains("focused")){
+			handleTaskFilter(App.dueDateListContainer, "due_date");
+		}
 	});
 }
