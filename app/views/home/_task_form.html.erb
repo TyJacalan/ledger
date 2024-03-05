@@ -1,7 +1,7 @@
 <%= form_with model: @task, url: user_tasks_path(current_user), method: "post", id: "terminal-task", remote: true do |form| %>
   <%= form.text_field :name, class: "terminal-task-input hidden", id: "terminal-task-name", placeholder: "Enter a task name"%>
-  <%= form.text_area :description, class: "terminal-task-input hidden", id: "terminal-task-description", placeholder: "Enter a task description" %>
-  <%= form.collection_select :category_id, Category.all, :id, :name, {}, { class: "terminal-task-input hidden", id: "terminal-task-category" } %>
-  <%= form.date_field :due_date, class: "terminal-task-input hidden", id: "terminal-task-date" %>
+  <%= form.text_area :description, class: "terminal-task-input hidden bg-transparent p-0 m-0 outline-none focus:outline-none focus:border-none text-sm", id: "terminal-task-description", placeholder: "Enter a task description" %>
+  <%= form.collection_select :category_id, Category.all, :id, :name, {}, { class: "terminal-task-input hidden bg-transparent p-0 m-0 outline-none border-none focus:outline-none focus:border-none text-sm", id: "terminal-task-category" } %>
+  <%= form.date_field :due_date, class: "terminal-task-input hidden bg-transparent border-none outline-none focus:border-none focus:outline-none focus:ring-0 text-sm custom-datepicker", id: "terminal-task-date" %>
   <%= form.submit class: "hidden" %>
 <% end %>

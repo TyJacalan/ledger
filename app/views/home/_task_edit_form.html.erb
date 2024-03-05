@@ -1,8 +1,8 @@
 <%= form_with id: "task-edit-form", class: "text-sm", model: @task, url: user_task_path(current_user, @task), method: "patch", remote: true do |form| %>
   <%= form.text_field :name %>
   <%= form.collection_select :category_id, Category.all, :id, :name, {}, class: "bg-transparent p-0 m-0 outline-none border-none focus:outline-none border-none text-sm" %>
-  <%= form.text_area :description, class: "bg-transparent p-0 m-0 outline-none border-none focus:outline-none border-none text-sm" %>
-  <%= form.date_field :due_date, class: "bg-background border-none outline-none focus:border-none focus-outline-none focus:ring-0 text-sm after:bg-foreground after:text-foreground custom-datepicker"%>
+  <%= form.text_area :description, class: "bg-transparent p-0 m-0 outline-none border-none focus:outline-none focus:border-none text-sm" %>
+  <%= form.date_field :due_date, class: "bg-transparent border-none outline-none focus:border-none focus:outline-none focus:ring-0 text-sm custom-datepicker"%>
   <%= form.submit ""%>
 <% end %>
 
