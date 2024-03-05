@@ -94,6 +94,9 @@ function handleCommandForm(command) {
 			
 			terminal.initHelper();
 			break;
+		case ':X':
+			handleLogOut();
+			break;
 		default:
 			terminal.initHelper();
 			break;
