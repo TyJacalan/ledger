@@ -11,3 +11,5 @@ config/google_analytics.yml
 public/assets/**
 app/assets/builds/*
 config/master.key
+
+/config/master.key
