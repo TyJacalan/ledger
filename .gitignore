@@ -10,4 +10,4 @@ config/google_analytics.yml
 /nbproject/
 public/assets/**
 app/assets/builds/*
-
+config/master.key
