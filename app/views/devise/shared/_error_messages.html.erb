@@ -1,0 +1,8 @@
+<% if resource.errors.any? %>
+  <% resource.errors.full_messages.each do |message| %>
+    <%= render_toast header: "Invalid Signup",
+      id: "alert_toast",
+      variant: :destructive,
+      description: message %>
+  <% end %>
+<% end %>

@@ -6,13 +6,23 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+  
+    <%= javascript_include_tag 'index' %>
+    <%= javascript_include_tag 'handleKeydown' %> 
+    <%= javascript_include_tag 'handleFocus' %>
+    <%= javascript_include_tag 'handleNavigate' %>
+    <%= javascript_include_tag 'handleCategoryEdit' %>
+    <%= javascript_include_tag 'handleCategoryDelete' %>
+    <%= javascript_include_tag 'handleTaskEdit' %>
+    <%= javascript_include_tag 'handleTaskDelete' %>
+    <%= javascript_include_tag 'handleTaskFilter' %>
+    <%= javascript_include_tag 'handleLogOut' %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="dark bg-background text-foreground">
+    <main class="relative flex flex-col h-screen w-screen max-h-screen max-w-screen">
       <%= yield %>
     </main>
   </body>
