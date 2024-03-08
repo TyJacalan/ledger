@@ -1,19 +1,19 @@
 <div id="task-list-container" class="h-full w-full home-box" tabindex="3">
   <ul id="task-list" class="flex flex-col gap-2">
       <li class="text-primary">
-        <div>Name</div>
-        <div>Category</div>
-        <div>Description</div>
-        <div>Due Date</div>
+        <div class="scrollbar-none">Name</div>
+        <div class="scrollbar-none">Category</div>
+        <div class="scrollbar-none">Description</div>
+        <div class="scrollbar-none">Due Date</div>
       </li>
     <% @tasks.each do |task| %>
       <li class="w-full px-1" data-user-id="<%= task.user_id %>" data-task-id="<%= task.id %>" >
-        <%= content_tag :div, task.name %>
+        <%= content_tag :div, task.name, class: "scrollbar-none overflow-hidden whitespace-nowrap" %>
         <% if task.category%>
-          <%= content_tag :div, task.category.name %>
+          <%= content_tag :div, task.category.name, class: "scrollbar-none overflow-hidden whitespace-nowrap" %>
         <% end %>
-        <%= content_tag :div, task.description %>
-        <%= content_tag :div, task.due_date %>
+        <%= content_tag :div, task.description, class: "scrollbar-none overflow-hidden whitespace-nowrap" %>
+        <%= content_tag :div, task.due_date, class: "scrollbar-none overflow-hidden whitespace-nowrap" %>
       </li>
     <% end %>
     </ul>
