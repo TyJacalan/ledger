@@ -17,13 +17,15 @@ function initTaskForm() {
 };
 
 function initHelper() {
-	commandForm.classList.add("hidden");
+    commandForm.classList.add("hidden");
+    const categoryFormInputsVisible = categoryFormInputs.some(input => !input.classList.contains("hidden"));
+    const taskFormInputsVisible = taskFormInputs.some(input => !input.classList.contains("hidden"));
 
-	if (!categoryFormInputs[0].classList.contains("hidden") || !taskFormInputs[0].classList.contains("hidden")) {
-		terminalHelper.classList.add("hidden");
-	} else {
-		terminalHelper.classList.remove("hidden");
-	}
+    if (!categoryFormInputsVisible || !taskFormInputsVisible) {
+        terminalHelper.classList.add("hidden");
+    } else {
+        terminalHelper.classList.remove("hidden");
+    }
 };
 
 function hideUi(ui) {
