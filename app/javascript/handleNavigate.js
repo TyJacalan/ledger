@@ -25,3 +25,12 @@ function updateFocus(change){
 	listItem.classList.add('active');
 	previousItem = listItem;
 }
+
+function resetFocus() {
+    if (previousItem !== null) {
+        previousItem.classList.remove('active');
+    }
+
+    focusedIndex = -1;
+    previousItem = null;
+}

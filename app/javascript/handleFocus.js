@@ -5,5 +5,9 @@ function handleFocus(){
 		box.addEventListener('focus', function(e) {
 			box.classList.add("focused");
 		});
+
+		box.addEventListener('blur', function(e) {
+			resetFocus();
+		})
 	});
 };
