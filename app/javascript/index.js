@@ -2,6 +2,11 @@ const App = {
 	taskListContainer: null,
 	categoryListContainer: null,
 	dueDateListContainer: null,
+	categoryFormInputs: null,
+	taskFormInputs: null,
+	commandForm: null,
+	terminalHelper: null,
+	terminalUi: null,
 
 	initializeEventHandlers: function() {
 		this.taskListKeyDownHandler = this.handleTaskListKeyDown.bind(this);
@@ -46,4 +51,10 @@ document.addEventListener('DOMContentLoaded', function(){
 	App.categoryListContainer = document.querySelector('#category-list-container');
 	App.dueDateListContainer = document.querySelector('#due-date-list-container');
 	App.initializeEventHandlers();
+
+	App.categoryFormInputs = document.querySelectorAll('.terminal-category-input');
+	App.taskFormInputs = document.querySelectorAll('.terminal-task-input');
+	App.commandForm = document.querySelector('#terminal-command');
+	App.terminalHelper = document.querySelector('#terminal-helper');
+	App.terminalUi = [App.categoryFormInputs, App.taskFormInputs, App.commandForm, App.terminalHelper];
 });

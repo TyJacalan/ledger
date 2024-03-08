@@ -1,30 +1,24 @@
-const categoryFormInputs = document.querySelectorAll('.terminal-category-input');
-const taskFormInputs = document.querySelectorAll('.terminal-task-input');
-const commandForm = document.querySelector('#terminal-command');
-const terminalHelper = document.querySelector('#terminal-helper');
-const terminalUi = [categoryFormInputs, taskFormInputs, commandForm, terminalHelper];
-
 function initCommandForm() {
-	initUi(commandForm);
+	initUi(App.commandForm);
 };
 
 function initCategoryForm() {
-	initUi(categoryFormInputs[0]);
+	initUi(App.categoryFormInputs[0]);
 };
 
 function initTaskForm() {
-	initUi(taskFormInputs[0]);
+	initUi(App.taskFormInputs[0]);
 };
 
 function initHelper() {
-    commandForm.classList.add("hidden");
-    const categoryFormInputsVisible = categoryFormInputs.some(input => !input.classList.contains("hidden"));
-    const taskFormInputsVisible = taskFormInputs.some(input => !input.classList.contains("hidden"));
+    App.commandForm.classList.add("hidden");
+    const categoryFormInputsVisible = Array.from(App.categoryFormInputs).some(input => !input.classList.contains("hidden"));
+    const taskFormInputsVisible = Array.from(App.taskFormInputs).some(input => !input.classList.contains("hidden"));
 
     if (!categoryFormInputsVisible || !taskFormInputsVisible) {
-        terminalHelper.classList.add("hidden");
+        App.terminalHelper.classList.add("hidden");
     } else {
-        terminalHelper.classList.remove("hidden");
+        App.terminalHelper.classList.remove("hidden");
     }
 };
 
@@ -38,7 +32,7 @@ function hideUi(ui) {
 
 function initUi(formElement) {
 	// hide all interfaces
-	terminalUi.forEach(ui => hideUi(ui));
+	App.terminalUi.forEach(ui => hideUi(ui));
 
 	// unhide and focus current interface and add events
 	formElement.classList.remove("hidden");
@@ -75,11 +69,11 @@ function handleCommandForm(command) {
 
 	switch (command) {
 		case ':C':
-			initUi(categoryFormInputs[0]);
+			initUi(App.categoryFormInputs[0]);
 			break;
 		case ':T':
-			initUi(taskFormInputs[0]);
-			processTaskForm(taskFormInputs);
+			initUi(App.taskFormInputs[0]);
+			processTaskForm(App.taskFormInputs);
 			break;
 		case ':E':
 			activeEl.dataset.categoryId ? handleCategoryEdit() : handleTaskEdit();

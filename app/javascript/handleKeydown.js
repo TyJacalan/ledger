@@ -6,6 +6,7 @@ function handleKeydown(){
 		}
 
 		if(e.key === "Enter" && !commandForm.classList.contains("hidden")){
+			e.preventDefault();
 			handleCommandForm(commandForm.value);
 		}
 
