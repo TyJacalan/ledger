@@ -1,8 +1,8 @@
-categoryFormInputs = document.querySelectorAll('.terminal-category-input');
-taskFormInputs = document.querySelectorAll('.terminal-task-input');
-commandForm = document.querySelector('#terminal-command');
-terminalHelper = document.querySelector('#terminal-helper');
-terminalUi = [categoryFormInputs, taskFormInputs, commandForm, terminalHelper];
+const categoryFormInputs = document.querySelectorAll('.terminal-category-input');
+const taskFormInputs = document.querySelectorAll('.terminal-task-input');
+const commandForm = document.querySelector('#terminal-command');
+const terminalHelper = document.querySelector('#terminal-helper');
+const terminalUi = [categoryFormInputs, taskFormInputs, commandForm, terminalHelper];
 
 function initCommandForm() {
 	initUi(commandForm);
@@ -37,8 +37,6 @@ function hideUi(ui) {
 };
 
 function initUi(formElement) {
-	event.preventDefault();
-
 	// hide all interfaces
 	terminalUi.forEach(ui => hideUi(ui));
 
