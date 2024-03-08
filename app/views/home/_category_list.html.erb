@@ -2,7 +2,7 @@
   <h1 class="text-primary">Categories</h1>
   <ul id="category-list" class="flex flex-row md:flex-col h-full w-full items-start justify-start gap-4 overflow-y-auto">
     <% @categories.each do |category| %>
-      <li data-user-id="<%= category.user_id %>" data-category-id="<%= category.id %>"> <%= category.name %></li>
+      <li class="w-full px-1" data-user-id="<%= category.user_id %>" data-category-id="<%= category.id %>"> <%= category.name %></li>
     <% end %>
   </ul>
 </div>
