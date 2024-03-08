@@ -97,7 +97,7 @@
 
 @layer utilities {
 	.active {
-		@apply bg-background/50 brightness-125
+		@apply bg-foreground text-background;
 	}
 
 	.custom-datepicker::-webkit-calendar-picker-indicator {

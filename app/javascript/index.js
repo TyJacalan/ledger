@@ -29,15 +29,15 @@ const App = {
 	},
 
 	handleTaskListKeyDown: function(e) {
-		Navigator.handleNavigate(this.taskListContainer, 'ul', e);
+		handleNavigate(this.taskListContainer, 'ul', e);
 	},
 
 	handleCategoryListKeyDown: function(e) {
-		Navigator.handleNavigate(this.categoryListContainer, 'ul', e);
+		handleNavigate(this.categoryListContainer, 'ul', e);
 	},
 
 	handleDueDateListKeyDown: function(e) {
-		Navigator.handleNavigate(this.dueDateListContainer, 'ul', e);
+		handleNavigate(this.dueDateListContainer, 'ul', e);
 	}
 }
 

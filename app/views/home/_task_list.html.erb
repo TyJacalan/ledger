@@ -1,13 +1,13 @@
 <div id="task-list-container" class="h-full w-full home-box" tabindex="3">
   <ul id="task-list" class="flex flex-col gap-2">
-      <li>
+      <li class="text-primary">
         <div>Name</div>
         <div>Category</div>
         <div>Description</div>
         <div>Due Date</div>
       </li>
     <% @tasks.each do |task| %>
-      <li data-user-id="<%= task.user_id %>" data-task-id="<%= task.id %>" >
+      <li class="w-full px-1" data-user-id="<%= task.user_id %>" data-task-id="<%= task.id %>" >
         <%= content_tag :div, task.name %>
         <% if task.category%>
           <%= content_tag :div, task.category.name %>
