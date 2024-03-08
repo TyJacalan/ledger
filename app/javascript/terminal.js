@@ -1,57 +1,53 @@
-const terminal = {
-	categoryFormInputs: document.querySelectorAll('.terminal-category-input'),
-	taskFormInputs: document.querySelectorAll('.terminal-task-input'),
-	commandForm: document.querySelector('#terminal-command'),
-	terminalHelper: document.querySelector('#terminal-helper'),
-	terminalUi: [],
+categoryFormInputs = document.querySelectorAll('.terminal-category-input');
+taskFormInputs = document.querySelectorAll('.terminal-task-input');
+commandForm = document.querySelector('#terminal-command');
+terminalHelper = document.querySelector('#terminal-helper');
+terminalUi = [categoryFormInputs, taskFormInputs, commandForm, terminalHelper];
 
-	initCommandForm() {
-		this.initUi(this.commandForm);
-	},
+function initCommandForm() {
+	initUi(commandForm);
+};
 
-	initCategoryForm() {
-		this.initUi(this.categoryFormInputs[0]);
-	},
+function initCategoryForm() {
+	initUi(categoryFormInputs[0]);
+};
 
-	initTaskForm() {
-		this.initUi(this.taskFormInputs[0]);
-	},
+function initTaskForm() {
+	initUi(taskFormInputs[0]);
+};
 
-	initHelper() {
-		this.commandForm.classList.add("hidden");
+function initHelper() {
+	commandForm.classList.add("hidden");
 
-		if (!this.categoryFormInputs[0].classList.contains("hidden") || !this.taskFormInputs[0].classList.contains("hidden")) {
-			this.terminalHelper.classList.add("hidden");
-		} else {
-			this.terminalHelper.classList.remove("hidden");
-		}
-	},
-
-	hideUi(ui) {
-		if (ui && ui.forEach) {
-			ui.forEach(el => el.classList.add("hidden"));
-		} else {
-			ui.classList.add("hidden");
-		}
-	},
-
-	initUi(formElement) {
-		event.preventDefault();
-
-		// hide all interfaces
-		this.terminalUi.forEach(ui => this.hideUi(ui));
-
-		// unhide and focus current interface and add events
-		formElement.classList.remove("hidden");
-		formElement.focus();
-		formElement.addEventListener('blur', () => {
-			this.hideUi(formElement);
-			this.initHelper();
-		});
+	if (!categoryFormInputs[0].classList.contains("hidden") || !taskFormInputs[0].classList.contains("hidden")) {
+		terminalHelper.classList.add("hidden");
+	} else {
+		terminalHelper.classList.remove("hidden");
 	}
 };
 
-terminal.terminalUi = [terminal.categoryFormInputs, terminal.taskFormInputs, terminal.commandForm, terminal.terminalHelper];
+function hideUi(ui) {
+	if (ui && ui.forEach) {
+		ui.forEach(el => el.classList.add("hidden"));
+	} else {
+		ui.classList.add("hidden");
+	}
+};
+
+function initUi(formElement) {
+	event.preventDefault();
+
+	// hide all interfaces
+	terminalUi.forEach(ui => hideUi(ui));
+
+	// unhide and focus current interface and add events
+	formElement.classList.remove("hidden");
+	formElement.focus();
+	formElement.addEventListener('blur', () => {
+		hideUi(formElement);
+		initHelper();
+	});
+};
 
 function processTaskForm(taskFormInputs) {
 	taskFormInputs.forEach(function(input, index) {
@@ -78,27 +74,27 @@ function handleCommandForm(command) {
 
 	switch (command) {
 		case ':C':
-			terminal.initUi(terminal.categoryFormInputs[0]);
+			initUi(categoryFormInputs[0]);
 			break;
 		case ':T':
-			terminal.initUi(terminal.taskFormInputs[0]);
-			processTaskForm(terminal.taskFormInputs);
+			initUi(taskFormInputs[0]);
+			processTaskForm(taskFormInputs);
 			break;
 		case ':E':
 			activeEl.dataset.categoryId ? handleCategoryEdit() : handleTaskEdit();
 
-			terminal.initHelper();
+			initHelper();
 			break;
 		case ':D':
 			activeEl.dataset.categoryId ? handleCategoryDelete() : handleTaskDelete();
 			
-			terminal.initHelper();
+			initHelper();
 			break;
 		case ':X':
 			handleLogOut();
 			break;
 		default:
-			terminal.initHelper();
+			initHelper();
 			break;
 	}
 }
