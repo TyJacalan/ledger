@@ -1,6 +1,6 @@
-<div id="due-date-list-container" class="flex flex-col gap-4 h-12 md:h-full w-full md:w-3/12 px-4 py-2 home-box" tabindex="2">
+<div id="due-date-list-container" class="flex flex-col gap-4 h-fit md:h-full w-full md:w-3/12 px-4 py-2 home-box" tabindex="2">
   <h1 class="text-primary">Due Dates</h1>
-  <ul id="due-date-list" class="flex flex-col h-full w-full items-start justify-start gap-4 overflow-y-auto">
+  <ul id="due-date-list" class="flex flex-row md:flex-col flex-nowrap h-full w-full items-start justify-start gap-4 overflow-y-auto">
     <% @due_dates.each do |due_date| %>
       <li class="w-full px-1"><%= due_date %></li>
     <% end %>
