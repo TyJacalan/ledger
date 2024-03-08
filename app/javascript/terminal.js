@@ -61,8 +61,9 @@ function processTaskForm(taskFormInputs) {
 					taskFormInputs[index + 1].classList.remove("hidden");
 					taskFormInputs[index + 1].focus();
 				} else {
-					console.log("submitting");
-					console.log(input.id);
+					//reset event handlers
+					App.removeEventHandlers();
+					App.initializeEventHandlers();
 				}
 			}
 		});

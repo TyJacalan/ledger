@@ -4355,3 +4355,275 @@ Processing by HomeController#index as TURBO_STREAM
 Completed 200 OK in 31ms (Views: 26.9ms | ActiveRecord: 1.1ms | Allocations: 48387)
 
 
+Started GET "/" for 127.0.0.1 at 2024-03-08 15:45:55 +0800
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Pluck (0.8ms)[0m  [1m[34mSELECT DISTINCT "tasks"."due_date" FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_category_list.html.erb:4
+  Rendered home/_category_list.html.erb (Duration: 2.1ms | Allocations: 660)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_task_list.html.erb:9
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  Rendered home/_task_list.html.erb (Duration: 4.9ms | Allocations: 2309)
+  Rendered home/_due_date_list.html.erb (Duration: 0.0ms | Allocations: 12)
+  Rendered home/_terminal.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered components/ui/_input.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered home/_command_form.html.erb (Duration: 4.6ms | Allocations: 7183)
+  Rendered components/ui/_input.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered home/_category_form.html.erb (Duration: 7.3ms | Allocations: 13396)
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/home/_task_form.html.erb:4
+  Rendered home/_task_form.html.erb (Duration: 5.7ms | Allocations: 975)
+  Rendered home/index.html.erb within layouts/application (Duration: 31.9ms | Allocations: 26656)
+  Rendered layout layouts/application.html.erb (Duration: 68.6ms | Allocations: 66552)
+Completed 200 OK in 108ms (Views: 68.8ms | ActiveRecord: 12.3ms | Allocations: 71727)
+
+
+Started POST "/users/1/categories" for 127.0.0.1 at 2024-03-08 15:46:21 +0800
+Processing by CategoriesController#create as TURBO_STREAM
+  Parameters: {"category"=>{"name"=>""}, "user_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/categories_controller.rb:18:in `create'
+  [1m[36mCategory Exists? (3.7ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."name" = $1 AND "categories"."user_id" = $2 LIMIT $3[0m  [["name", ""], ["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/categories_controller.rb:18:in `create'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 20ms (ActiveRecord: 4.8ms | Allocations: 3515)
+
+
+Started GET "/" for 127.0.0.1 at 2024-03-08 15:46:21 +0800
+Processing by HomeController#index as TURBO_STREAM
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Pluck (0.3ms)[0m  [1m[34mSELECT DISTINCT "tasks"."due_date" FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_category_list.html.erb:4
+  Rendered home/_category_list.html.erb (Duration: 1.2ms | Allocations: 658)
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_task_list.html.erb:9
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  Rendered home/_task_list.html.erb (Duration: 3.6ms | Allocations: 2288)
+  Rendered home/_due_date_list.html.erb (Duration: 0.0ms | Allocations: 12)
+  Rendered home/_terminal.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered components/ui/_input.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered home/_command_form.html.erb (Duration: 3.2ms | Allocations: 7183)
+  Rendered components/ui/_input.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered home/_category_form.html.erb (Duration: 8.8ms | Allocations: 13410)
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/home/_task_form.html.erb:4
+  Rendered home/_task_form.html.erb (Duration: 2.3ms | Allocations: 975)
+  Rendered home/index.html.erb within layouts/application (Duration: 21.7ms | Allocations: 26651)
+  Rendered layout layouts/application.html.erb (Duration: 34.9ms | Allocations: 46099)
+Completed 200 OK in 40ms (Views: 34.7ms | ActiveRecord: 1.9ms | Allocations: 48455)
+
+
+Started GET "/" for 127.0.0.1 at 2024-03-08 15:46:27 +0800
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Pluck (0.4ms)[0m  [1m[34mSELECT DISTINCT "tasks"."due_date" FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_category_list.html.erb:4
+  Rendered home/_category_list.html.erb (Duration: 1.2ms | Allocations: 658)
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_task_list.html.erb:9
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  Rendered home/_task_list.html.erb (Duration: 3.2ms | Allocations: 2288)
+  Rendered home/_due_date_list.html.erb (Duration: 0.0ms | Allocations: 12)
+  Rendered home/_terminal.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered components/ui/_input.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered home/_command_form.html.erb (Duration: 3.3ms | Allocations: 7157)
+  Rendered components/ui/_input.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered home/_category_form.html.erb (Duration: 8.4ms | Allocations: 13417)
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/home/_task_form.html.erb:4
+  Rendered home/_task_form.html.erb (Duration: 2.3ms | Allocations: 975)
+  Rendered home/index.html.erb within layouts/application (Duration: 21.5ms | Allocations: 26632)
+  Rendered layout layouts/application.html.erb (Duration: 37.1ms | Allocations: 46080)
+Completed 200 OK in 44ms (Views: 36.7ms | ActiveRecord: 1.5ms | Allocations: 48395)
+
+
+Started DELETE "/users/1/categories/6" for 127.0.0.1 at 2024-03-08 15:46:44 +0800
+Processing by CategoriesController#destroy as */*
+  Parameters: {"user_id"=>"1", "id"=>"6", "category"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:47:in `set_category'
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 1], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:47:in `set_category'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/categories_controller.rb:40:in `destroy'
+  [1m[36mCategory Destroy (2.2ms)[0m  [1m[31mDELETE FROM "categories" WHERE "categories"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/categories_controller.rb:40:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/categories_controller.rb:40:in `destroy'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 11ms (ActiveRecord: 3.5ms | Allocations: 2968)
+
+
+Started DELETE "/" for 127.0.0.1 at 2024-03-08 15:46:44 +0800
+  
+ActionController::RoutingError (No route matches [DELETE] "/"):
+  
+Started POST "/users/1/categories" for 127.0.0.1 at 2024-03-08 15:46:51 +0800
+Processing by CategoriesController#create as TURBO_STREAM
+  Parameters: {"category"=>{"name"=>"Travel"}, "user_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/categories_controller.rb:18:in `create'
+  [1m[36mCategory Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."name" = $1 AND "categories"."user_id" = $2 LIMIT $3[0m  [["name", "Travel"], ["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:18:in `create'
+  [1m[36mCategory Create (1.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Travel"], ["created_at", "2024-03-08 07:46:51.071654"], ["updated_at", "2024-03-08 07:46:51.071654"], ["user_id", 1]]
+  ↳ app/controllers/categories_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/categories_controller.rb:18:in `create'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 10ms (ActiveRecord: 4.2ms | Allocations: 3536)
+
+
+Started GET "/" for 127.0.0.1 at 2024-03-08 15:46:51 +0800
+Processing by HomeController#index as TURBO_STREAM
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Pluck (0.2ms)[0m  [1m[34mSELECT DISTINCT "tasks"."due_date" FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_category_list.html.erb:4
+  Rendered home/_category_list.html.erb (Duration: 1.4ms | Allocations: 658)
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_task_list.html.erb:9
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  Rendered home/_task_list.html.erb (Duration: 2.5ms | Allocations: 2288)
+  Rendered home/_due_date_list.html.erb (Duration: 0.0ms | Allocations: 12)
+  Rendered home/_terminal.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered components/ui/_input.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered home/_command_form.html.erb (Duration: 2.3ms | Allocations: 7183)
+  Rendered components/ui/_input.html.erb (Duration: 0.0ms | Allocations: 36)
+  Rendered home/_category_form.html.erb (Duration: 3.8ms | Allocations: 13366)
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/home/_task_form.html.erb:4
+  Rendered home/_task_form.html.erb (Duration: 1.3ms | Allocations: 975)
+  Rendered home/index.html.erb within layouts/application (Duration: 15.7ms | Allocations: 26607)
+  Rendered layout layouts/application.html.erb (Duration: 30.0ms | Allocations: 46057)
+Completed 200 OK in 33ms (Views: 29.5ms | ActiveRecord: 1.1ms | Allocations: 48374)
+
+
+Started POST "/users/1/tasks" for 127.0.0.1 at 2024-03-08 15:47:29 +0800
+Processing by TasksController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "task"=>{"name"=>"Prepare itinerary", "description"=>"", "category_id"=>"7", "due_date"=>"2024-03-11"}, "commit"=>"Create Task", "user_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:19:in `create'
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:19:in `create'
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "description", "due_date", "category_id", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Prepare itinerary"], ["description", ""], ["due_date", "2024-03-11"], ["category_id", 7], ["created_at", "2024-03-08 07:47:29.684909"], ["updated_at", "2024-03-08 07:47:29.684909"], ["user_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:19:in `create'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 8ms (ActiveRecord: 1.3ms | Allocations: 3731)
+
+
+Started GET "/" for 127.0.0.1 at 2024-03-08 15:47:29 +0800
+Processing by HomeController#index as TURBO_STREAM
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Pluck (0.3ms)[0m  [1m[34mSELECT DISTINCT "tasks"."due_date" FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_category_list.html.erb:4
+  Rendered home/_category_list.html.erb (Duration: 1.1ms | Allocations: 658)
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_task_list.html.erb:9
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  Rendered home/_task_list.html.erb (Duration: 4.1ms | Allocations: 2890)
+  Rendered home/_due_date_list.html.erb (Duration: 0.0ms | Allocations: 12)
+  Rendered home/_terminal.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered components/ui/_input.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered home/_command_form.html.erb (Duration: 3.0ms | Allocations: 7183)
+  Rendered components/ui/_input.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered home/_category_form.html.erb (Duration: 4.4ms | Allocations: 13366)
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/home/_task_form.html.erb:4
+  Rendered home/_task_form.html.erb (Duration: 1.6ms | Allocations: 975)
+  Rendered home/index.html.erb within layouts/application (Duration: 19.8ms | Allocations: 27205)
+  Rendered layout layouts/application.html.erb (Duration: 35.1ms | Allocations: 46654)
+Completed 200 OK in 39ms (Views: 34.5ms | ActiveRecord: 1.4ms | Allocations: 48980)
+
+
+Started GET "/" for 127.0.0.1 at 2024-03-08 15:48:18 +0800
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Pluck (0.6ms)[0m  [1m[34mSELECT DISTINCT "tasks"."due_date" FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_category_list.html.erb:4
+  Rendered home/_category_list.html.erb (Duration: 1.8ms | Allocations: 658)
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/_task_list.html.erb:9
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/home/_task_list.html.erb:12
+  Rendered home/_task_list.html.erb (Duration: 5.8ms | Allocations: 2890)
+  Rendered home/_due_date_list.html.erb (Duration: 0.0ms | Allocations: 12)
+  Rendered home/_terminal.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered components/ui/_input.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered home/_command_form.html.erb (Duration: 5.5ms | Allocations: 7183)
+  Rendered components/ui/_input.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered home/_category_form.html.erb (Duration: 6.1ms | Allocations: 13398)
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/home/_task_form.html.erb:4
+  Rendered home/_task_form.html.erb (Duration: 2.5ms | Allocations: 975)
+  Rendered home/index.html.erb within layouts/application (Duration: 32.4ms | Allocations: 28622)
+  Rendered layout layouts/application.html.erb (Duration: 60.9ms | Allocations: 67073)
+Completed 200 OK in 91ms (Views: 60.5ms | ActiveRecord: 2.4ms | Allocations: 69406)
+
+

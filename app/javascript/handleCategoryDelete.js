@@ -16,8 +16,7 @@ function handleCategoryDelete() {
 	})
 		.then(response => response.text())
 		.then(data => {
-			console.log('Category deleted successfully:', data);
 			categoryItem.remove();
 		})
-		.catch(error => console.error('Errro deleting category:', error));
+		.catch(error => console.error('Error deleting category:', error));
 }

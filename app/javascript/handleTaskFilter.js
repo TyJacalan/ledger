@@ -3,7 +3,7 @@ function handleTaskFilter(container, params){
 	const selectedItem = container.querySelector("li.active");
 
 	if(selectedItem){
-	const filterCondition = selectedItem.textContent.trim();
+		const filterCondition = selectedItem.textContent.trim();
 
 		fetch(`/?${params}=${filterCondition}`)
 			.then(response => response.text())
@@ -20,7 +20,9 @@ function handleTaskFilter(container, params){
 				console.log("Error filtering tasks:", error);
 			});
 	} else {
-		console.log("No active list item found.");
+		//reset event handlers
+		App.removeEventHandlers();
+		App.initializeEventHandlers();
 	}
 }
 
