@@ -18,9 +18,9 @@ const App = {
 		this.dueDateListContainer.addEventListener("keydown", this.dueDateListKeyDownHandler);
 
 		handleFocus();
+		document.addEventListener('keydown', handleKeydown);
 		
-		handleKeydown();
-	},
+		},
 
 	removeEventHandlers: function() {
 		this.taskListContainer.removeEventListener("keydown", this.taskListKeyDownHandler);
@@ -31,6 +31,10 @@ const App = {
 		this.taskListKeyDownHandler = null;
 		this.categoryListKeyDownHandler = null;
 		this.dueDateListKeyDownHandler = null;
+
+		removeHandleFocus();
+		document.removeEventListener('keydown', handleKeydown);
+
 	},
 
 	handleTaskListKeyDown: function(e) {
