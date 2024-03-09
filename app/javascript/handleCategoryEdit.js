@@ -1,5 +1,5 @@
 function handleCategoryEdit(e){
-	const categoryItem = document.querySelector("#category-list > li.active");
+	const categoryItem = document.querySelector("#category-list > li.prevItem");
 	const userId = categoryItem.dataset.userId;
 	const categoryId = categoryItem.dataset.categoryId;
 
