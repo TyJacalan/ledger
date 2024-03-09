@@ -24,7 +24,7 @@ A full stack task manager application built with Ruby on Rails.
 * Devise 4.9.2
 * Shadcn-ui 0.0.12
 
-##Getting Started
+## Getting Started
 
 1. Clone the respository
 ```
