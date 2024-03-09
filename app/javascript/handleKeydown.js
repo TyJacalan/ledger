@@ -2,7 +2,6 @@ function handleKeydown(e){
 	const commandForm = document.querySelector('#terminal-command');
 
 	if(e.ctrlKey && e.key === "c"){
-		console.log("running");
 		initCommandForm();
 	}
 

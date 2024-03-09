@@ -65,7 +65,7 @@ function processTaskForm(taskFormInputs) {
 }
 
 function handleCommandForm(command) {
-	const activeEl = document.querySelector(".active");
+	const activeEl = document.querySelector(".prevItem");
 
 	switch (command) {
 		case ':C':

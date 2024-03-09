@@ -1,5 +1,5 @@
 function handleTaskEdit(e){
-    const taskItem = document.querySelector("#task-list > li.active");
+    const taskItem = document.querySelector("#task-list > li.prevItem");
     const userId = taskItem.dataset.userId;
     const taskId = taskItem.dataset.taskId;
 

@@ -18,6 +18,7 @@ function handleNavigate(container, listTagName, e){
 function updateFocus(change){
 	if(previousItem != null){
 		previousItem.classList.remove('active');
+		previousItem.classList.remove('prevItem');
 	}
 
 	focusedIndex += change;
@@ -29,6 +30,7 @@ function updateFocus(change){
 function resetFocus() {
     if (previousItem !== null) {
         previousItem.classList.remove('active');
+		previousItem.classList.add('prevItem')
     }
 
     focusedIndex = -1;
