@@ -1,10 +1,6 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
-  def setup
-    @user = users(:example)
-  end
-
   test "sign in" do
     visit new_user_session_url
 

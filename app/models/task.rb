@@ -9,6 +9,6 @@ class Task < ApplicationRecord
   private
   
   def due_date_must_be_greater_than_the_present
-    errors.add(:due_date, "must be greater than the present") if due_date.present? &&due_date < Date.today
+    errors.add(:due_date, "must be greater than the present") if due_date.present? && due_date < Date.today
   end
 end
