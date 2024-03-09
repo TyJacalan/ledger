@@ -93,6 +93,10 @@
 	#task-list li div:nth-child(2), #task_category_id {
 		grid-column: span 1 / span 1;
 	}
+
+	.scrollbar-none::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 @layer utilities {
@@ -101,9 +105,7 @@
 	}
 
 	.custom-datepicker::-webkit-calendar-picker-indicator {
-		fiter: invert(100%);
+		filter: invert(100%);
 	}
 
 }
-
-
