@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_122424) do
     t.text "description"
     t.bigint "category_id", null: false
     t.date "due_date"
-    t.boolean "status"
+    t.boolean "status", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
