@@ -1,0 +1,50 @@
+<%= render_dialog do %>
+  <%= dialog_trigger do %>
+    <%= render_button("Help", variant: :primary, class: "text-sm") %>
+  <% end %>
+
+  <%= dialog_content do %>
+    <h2 class="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">Ledger Commands</h2>
+    <table class="mt-4">
+      <tr>
+        <td class="text-primary pr-4">^j</td>
+        <td>Navigate home backward</td>
+      </tr>
+      <tr>
+        <td class="text-primary pr-4">^k</td>
+        <td>Navigate box forward</td>
+      </tr>
+      <tr>
+        <td class="text-primary pr-4">&#8593;</td>
+        <td>Navigate list item up</td>
+      </tr>
+      <tr>
+        <td class="text-primary pr-4">&#8594;</td>
+        <td>Navigate list item right</td>
+      </tr>
+      <tr>
+        <td class="text-primary pr-4">&#8595;</td>
+        <td>Navigate list item down</td>
+      </tr>
+      <tr>
+        <td class="text-primary pr-4">&#8592;</td>
+        <td>Navigate list item left</td>
+      </tr>
+      <tr>
+        <td class="text-primary pr-4">^C</td>
+        <td>Open terminal</td>
+      </tr>
+    </table>
+
+    <h3 class="mt-10 scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight transition-colors first:mt-0">Features</h3>
+    <ol class="mt-4">
+      <li>Create categories</li>
+      <li>Edit categories</li>
+      <li>Delete categories</li>
+      <li>Create tasks</li>
+      <li>Edit tasks</li>
+      <li>Delete tasks</li>
+      <li>Filter tasks by due date</li>
+    </ol>
+  <% end %>
+<% end %>
