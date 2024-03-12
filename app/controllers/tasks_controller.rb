@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   
   def index 
-    @tasks = current_user.tasks.all
+    @tasks = current_user.tasks
   end
 
   def show
@@ -16,11 +16,9 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
       if @task.save
-        flash[:notice] = "Task was successfully created."
-        redirect_to root_path
+        redirect_to root_path, notice: "Task was successfully created"
       else
-          flash[:alert] = "Something went wrong!"
-          redirect_to root_path
+        redirect_to root_path, alert: "Something went wrong!"
       end
   end
 

@@ -105,7 +105,7 @@ export default class extends Controller {
                 if (response.ok) {
                     this.taskValues = {};
                     this.showHelper();
-                    //window.location.reload()
+
                     Turbo.visit(window.location.href, { action: "replace" });
                 } else {
                     throw new Error('Failed to create task');
@@ -115,7 +115,7 @@ export default class extends Controller {
                 console.error('Error creating task:', error);
             });
     }
-
+    
     handleBlur = () => {
         this.showHelper()
     }
