@@ -17,9 +17,6 @@ module.exports = {
             },
         },
         extend: {
-            fontFamily: {
-                'mono': [ "Menlo", ...defaultTheme.fontFamily.mono],
-            },
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
@@ -73,7 +70,7 @@ module.exports = {
                 sm: "calc(var(--radius) - 4px)",
             },
             fontFamily: {
-                sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+                sans: ["Menlo", ...defaultTheme.fontFamily.mono],
             },
             keyframes: {
                 "accordion-down": {

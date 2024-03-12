@@ -1,17 +1,17 @@
 <div id="task-list-container" class="h-full w-full home-box" tabindex="3">
   <ul id="task-list" class="flex flex-col gap-2">
-      <li class="text-primary">
-        <div class="scrollbar-none">Name</div>
-        <div class="scrollbar-none">Status</div>
-        <div class="scrollbar-none">Category</div>
-        <div class="scrollbar-none">Due Date</div>
+    <li class="text-primary">
+        <%= render partial: 'home/shared/list_item', locals: { attr_value: "Name" } %>
+        <%= render partial: 'home/shared/list_item', locals: { attr_value: "Status" } %>
+        <%= render partial: 'home/shared/list_item', locals: { attr_value: "Category" } %>
+        <%= render partial: 'home/shared/list_item', locals: { attr_value: "Due Date" } %>
       </li>
     <% @tasks.each do |task| %>
       <li class="w-full px-1" data-user-id="<%= task.user_id %>" data-task-id="<%= task.id %>" >
-        <%= content_tag :div, task.name, class: "scrollbar-none overflow-hidden whitespace-nowrap" %>
-        <%= content_tag :div, task.status, class: "scrollbar-none overflow-hidden whitespace-nowrap" %>
-        <%= content_tag :div, task.category.name, class: "scrollbar-none overflow-hidden whitespace-nowrap" %>
-        <%= content_tag :div, task.formatted_due_date, class: "scrollbar-none overflow-hidden whitespace-nowrap" %>
+        <%= render partial: 'home/shared/list_item', locals: { attr_value: task.name } %>
+        <%= render partial: 'home/shared/list_item', locals: { attr_value: task.status } %>
+        <%= render partial: 'home/shared/list_item', locals: { attr_value: task.category.name } %>
+        <%= render partial: 'home/shared/list_item', locals: { attr_value: task.formatted_due_date } %>
       </li>
     <% end %>
     </ul>

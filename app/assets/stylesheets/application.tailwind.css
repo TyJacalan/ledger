@@ -2,9 +2,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer components {
-    .custom-text-input {
-        @apply bg-transparent text-foreground text-sm border-none focus:ring-0;
-    }
-}

@@ -16,9 +16,9 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
-      redirect_to root_path, notice: "Task was successfully created."
+      format.html { redirect_to root_path, notice: "Task was successfully created." }
     else
-      redirect_to root_path, alert: "Something went wrong!"
+      format.html { redirect_to root_path, alert: "Something went wrong!" }
     end
   end
 

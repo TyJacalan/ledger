@@ -8,10 +8,11 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= content_for :stylesheets %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="dark bg-background text-foreground font-mono">
+  <body class="dark bg-background text-foreground">
     <main class="relative flex flex-col h-screen w-screen max-h-screen max-w-screen">
       <%= yield %>
     </main>
