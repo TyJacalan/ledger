@@ -13,14 +13,8 @@
   </head>
 
   <body class="dark bg-background text-foreground">
-    <main class="relative flex flex-col h-screen w-screen max-h-screen max-w-screen">
+    <main class="relative flex flex-col h-screen w-screen max-h-screen max-w-screen overflow-hidden">
       <%= yield %>
     </main>
-
-    <% if flash[:notice].present? %>
-      <%= render_toast header: "Success", description: flash[:notice], variant: :success %>
-    <% elsif flash[:alert].present? %>
-      <%= render_toast header: "Error", description: flash[:alert], variant: :error %>
-    <% end %>
   </body>
 </html>

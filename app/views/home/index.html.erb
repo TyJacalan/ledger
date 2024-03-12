@@ -1,7 +1,7 @@
 <div data-controller="home" class="flex flex-col h-full w-full gap-4 p-4 text-sm text-muted-foreground">
   <%= render 'home/header/navbar' %>
  
-  <div class="flex flex-col md:flex-row h-full w-full gap-4">
+  <div class="flex-1 flex flex-col md:flex-row h-full w-full gap-4 overflow-hidden">
      <%= render 'home/category/list' %>
      <%= render 'home/task/list' %>
      <%= render 'home/due_date/list' %>
