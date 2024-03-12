@@ -1,5 +1,5 @@
-<div id="task-list-container" class="h-full w-full home-box" tabindex="3">
-  <ul id="task-list" class="flex flex-col gap-2">
+<div id="task-list-container" class="flex-1 h-full w-full home-box overflow-hidden" tabindex="3">
+  <ul id="task-list" class="flex flex-col gap-2 overflow-y-auto">
     <li class="text-primary">
         <%= render partial: 'home/shared/list_item', locals: { attr_value: "Name" } %>
         <%= render partial: 'home/shared/list_item', locals: { attr_value: "Status" } %>

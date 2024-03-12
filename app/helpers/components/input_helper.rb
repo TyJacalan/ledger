@@ -20,9 +20,6 @@ module Components::InputHelper
       autocorrect: (options[:autocorrect] || nil)
     )
     
-    # optional: extra attributes
-    options.merge!(data: { terminal_target: options.delete(:data_terminal_target) }) if options[:data_terminal_target]
-
     render partial: "components/ui/input", locals: {
       type:,
       label:,

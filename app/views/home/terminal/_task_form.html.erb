@@ -1,1 +1,15 @@
-<h1>Task Form</h1>
+<%= render_input name: "name", id: "terminal-task-name", autocomplete: true, placeholder: "Enter a task name", variant: :borderless, data: { terminal_target: "taskField" } %>
+<%= render_select name: "category_id" do |select| %>
+  <% @categories.each do |category| %>
+    <%= select.option label: category.name, value: category.id %>
+  <% end %>
+<% end %>
+<%= render_input name: "description", id: "terminal-task-description", autocomplete: true, placeholder: "Enter a task description", variant: :borderless, data: { terminal_target: "taskField" } %>
+<%= render_input name: "due_date", id: "terminal-task-due-date", type: :date, variant: :borderless, data: { terminal_target: "taskField" } %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const selectElement = document.querySelector("#terminal-task-form > select");
+    selectElement.dataset.terminalTarget = 'taskField';
+  });
+</script>
