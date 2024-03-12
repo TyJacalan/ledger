@@ -5,13 +5,6 @@
     <!-- <%= render 'home/category/list' %> -->
     <!-- <%= render 'home/task/list' %> -->
     <!-- <%= render 'home/due_date/list' %> -->
-    <% @tasks.each do |task| %>
-      <%= content_tag :div, task.name %>
-    <% end %>
-    
-    <%= turbo_frame_tag "new task" do %>
-      
-    <% end %>
   </div>
 
   <%= render 'home/terminal/container' %>
