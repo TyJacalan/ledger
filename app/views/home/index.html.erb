@@ -1,4 +1,4 @@
-<div data-controller="home" class="flex flex-col h-full w-full gap-4 p-4 text-sm text-muted-foreground">
+<div data-controller="terminal" data-action="keydown.ctrl+c->terminal#showCommandForm" class="flex flex-col h-full w-full gap-4 p-4 text-sm text-muted-foreground">
   <%= render 'home/header/navbar' %>
  
   <div class="flex-1 flex flex-col md:flex-row h-full w-full gap-4 overflow-hidden">
@@ -6,6 +6,8 @@
      <%= render 'home/task/list' %>
      <%= render 'home/due_date/list' %>
   </div>
-
-  <%= render 'home/terminal/container' %>
+  
+  <div data-controller="" class="h-12 w-full flex items-center justify-start home-box" id="terminal-container" tabindex="5">
+    <%= render 'home/terminal/container' %>
+  </div>
 </div>

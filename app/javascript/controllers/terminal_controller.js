@@ -3,10 +3,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     static targets = [ "ui", "commandField", "taskField"]
 
-    initialize() {
+    connect() {
         this.index = 0
         this.showCurrentUi()
-        document.addEventListener("keydown", this.handleKeyDown)
     }
 
     showHelper() {
@@ -56,37 +55,33 @@ export default class extends Controller {
         })
     }
 
-    handleKeyDown = (e) => {
-        if(e.ctrlKey && e.key === "c"){
-            this.showCommandForm()
-        } else if (e.key === "Enter" && this.index === 1) {
-            //command Form controls
-            const command = this.commandFieldTarget.value.trim()
-            this.commandFieldTarget.value = ""
+    handleCommandForm() {
+        const command = this.commandFieldTarget.value.trim()
+        this.commandFieldTarget.value = ""
 
-            switch (command) {
-                case ":C":
-                    this.showCategoryForm()
-                    break;
-                case ":T":
-                    this.showTaskForm()
-                    break;
-            }
-        } else if (e.key === "Enter" && this.index === 3) {
-            //task form controls
-            
-            const currentInput = this.taskFieldTargets[this.taskInputIndex]
-            const key = currentInput.getAttribute('name')
-            const value = currentInput.value.trim()
+        switch (command) {
+            case ":C":
+                this.showCategoryForm()
+                break;
+            case ":T":
+                this.showTaskForm()
+                break;
+        }
+    }
 
-            this.taskValues[key] = value
+    handleTaskForm() {
+        console.log("running task form")
+        const currentInput = this.taskFieldTargets[this.taskInputIndex]
+        const key = currentInput.getAttribute('name')
+        const value = currentInput.value.trim()
 
-            if( this.taskInputIndex < this.taskFieldTargets.length - 1){
-                this.taskInputIndex += 1
-                this.showCurrentTaskInput()
-            } else {
-                this.submitTaskForm()
-            }
+        this.taskValues[key] = value
+
+        if( this.taskInputIndex < this.taskFieldTargets.length - 1){
+            this.taskInputIndex += 1
+            this.showCurrentTaskInput()
+        } else {
+            this.submitTaskForm()
         }
     }
 
