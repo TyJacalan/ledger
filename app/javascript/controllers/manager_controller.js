@@ -5,6 +5,7 @@ export default class extends Controller {
 
     connect() {
         this.indexValue = -1
+        this.activeContainerIndex = null
         this.activeList = null
     }
 
@@ -29,6 +30,7 @@ export default class extends Controller {
     setActiveContainer() {
         this.listTargets.forEach((element, index) => {
             if(document.activeElement === element.children[0]){
+                this.activeContainerIndex = index
                 switch(index) {
                     case 0:
                         this.activeList = this.categoryItemTargets
@@ -65,5 +67,24 @@ export default class extends Controller {
         list.forEach((element, index) => {
             element.classList.remove("bg-secondary")
         })
+    }
+
+    showTask() {
+        if(this.indexValue >= 0 && this.activeContainerIndex === 1){
+            
+            const selectedTaskElement = this.activeList[this.indexValue]
+            const taskId = selectedTaskElement.dataset.taskId;
+            
+            if(taskId){
+                fetch(`/tasks/${taskId}`)
+                    .then(response => response.json())
+                    .then(task => {
+                        console.log("Task details:", task)
+                    })
+                    .catch(error => {
+                        console.error("Error fetching task details:", error)
+                    })
+            }
+        }
     }
 }
