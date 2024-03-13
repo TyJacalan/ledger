@@ -4,23 +4,42 @@ export default class extends Controller {
     static targets = ["homeBox"]
 
     connect() {
-        this.index = 0;
-        this.focusCurrentBox()
+        this.indexValue = 0
     }
 
     nextBox() {
-        this.indexValue++
-        this.focusCurrentBox()
+        if(this.indexValue < this.homeBoxTargets.length - 1){
+
+            this.checkCurrentBox()
+            this.indexValue++
+
+            this.focusCurrentBox()
+        }
     }
 
     prevBox() {
-        this.indexValue--
-        this.focusCurrentBox()
+        if(this.indexValue > 0){
+            
+            this.checkCurrentBox()
+            this.indexValue--
+
+            this.focusCurrentBox()
+        }
+    }
+
+    checkCurrentBox() {
+        this.homeBoxTargets.forEach((element, index) => {
+            if(document.activeElement === this.homeBoxTargets[index]){
+                this.indexValue = index
+            }
+        })
     }
 
     focusCurrentBox() {
         this.homeBoxTargets.forEach((element, index) => {
-            element.focus() = index != this.indexValue
+            if(index === this.indexValue){
+                element.focus()
+            }
         })
     }
 
