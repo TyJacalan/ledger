@@ -4,7 +4,7 @@ export default class extends Controller {
     static targets = ["homeBox"]
 
     connect() {
-        this.indexValue = 0
+        this.indexValue = -1
     }
 
     nextBox() {
@@ -36,6 +36,7 @@ export default class extends Controller {
     }
 
     focusCurrentBox() {
+        window.dispatchEvent(new CustomEvent("reset-manager"))
         this.homeBoxTargets.forEach((element, index) => {
             if(index === this.indexValue){
                 element.focus()

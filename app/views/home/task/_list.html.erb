@@ -6,7 +6,12 @@
     <%= render partial: 'home/shared/list_item', locals: { attr_value: "Due Date" } %>
   </li>
   <% @tasks.each do |task| %>
-    <li class="flex w-full px-1" data-user-id="<%= task.user_id %>" data-task-id="<%= task.id %>" >
+    <li 
+      class="flex w-full px-1" 
+      data-user-id="<%= task.user_id %>" 
+      data-task-id="<%= task.id %>" 
+      data-manager-target="taskItem"
+    >
       <%= render partial: 'home/shared/list_item', locals: { attr_value: task.name } %>
       <%= render partial: 'home/shared/list_item', locals: { attr_value: task.status } %>
       <%= render partial: 'home/shared/list_item', locals: { attr_value: task.category.name } %>
