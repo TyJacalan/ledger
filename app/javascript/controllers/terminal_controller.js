@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = [ "ui", "commandField", "taskField"]
+    static targets = [ "ui", "commandField", "categoryField", "taskField"]
 
     connect() {
         this.index = 0
@@ -22,6 +22,8 @@ export default class extends Controller {
     showCategoryForm() {
         this.index = 2
         this.showCurrentUi()
+
+        this.categoryValues = {}
     }
 
     showTaskForm() {
@@ -69,8 +71,16 @@ export default class extends Controller {
         }
     }
 
+    handleCategoryForm() {
+        const name = this.categoryFieldTarget.value.trim()
+        this.categoryFieldTarget.value = ""
+
+        this.categoryValues['name'] = name
+        
+        this.submitCategoryForm()
+    }
+
     handleTaskForm() {
-        console.log("running task form")
         const currentInput = this.taskFieldTargets[this.taskInputIndex]
         const key = currentInput.getAttribute('name')
         const value = currentInput.value.trim()
@@ -83,6 +93,32 @@ export default class extends Controller {
         } else {
             this.submitTaskForm()
         }
+    }
+
+    submitCategoryForm() {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch('/categories', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+            },
+            body: JSON.stringify({ category: this.categoryValues })
+        })
+            .then(response => {
+                if (response.ok) {
+                    this.categoryValues = {};
+                    this.showHelper();
+
+                    Turbo.visit(window.location.href, { action: "replace" });
+                } else {
+                    throw new Error('Failed to create category');
+                }
+            })
+            .catch(error => {
+                console.error('Error creating category:', error);
+            });
     }
 
     submitTaskForm () {
@@ -109,9 +145,5 @@ export default class extends Controller {
             .catch(error => {
                 console.error('Error creating task:', error);
             });
-    }
-    
-    handleBlur = () => {
-        this.showHelper()
     }
 }
