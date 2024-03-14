@@ -2,7 +2,7 @@
 <ul id="category-list" class="flex flex-row md:flex-col items-start justify-start gap-4 overflow-x-auto">
   <% @categories.each do |category| %>
     <li 
-      class="md:w-full px-1" 
+      class="md:w-full px-1 focus-visible:outline-none" 
       data-user-id="<%= category.user_id %>" 
       data-category-id="<%= category.id %>"
       data-manager-target="categoryItem"

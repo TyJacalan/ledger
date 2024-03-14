@@ -49,9 +49,10 @@ export default class extends Controller {
     highlightCurrentItem() {
         this.activeList.forEach((element, index) => {
             if(index === this.indexValue){
+                element.focus()
                 element.classList.add("bg-secondary")
             } else {
-                element.classList.remove("bg-secondary")
+              element.classList.remove("bg-secondary")
             }
         })
     }
@@ -72,19 +73,11 @@ export default class extends Controller {
     showTask() {
         if(this.indexValue >= 0 && this.activeContainerIndex === 1){
             
-            const selectedTaskElement = this.activeList[this.indexValue]
-            const taskId = selectedTaskElement.dataset.taskId;
-            
-            if(taskId){
-                fetch(`/tasks/${taskId}`)
-                    .then(response => response.json())
-                    .then(task => {
-                        console.log("Task details:", task)
-                    })
-                    .catch(error => {
-                        console.error("Error fetching task details:", error)
-                    })
-            }
+          const link = document.querySelector('#task-list a')
+
+          if (link) {
+            link.click();
+          }
         }
     }
 }

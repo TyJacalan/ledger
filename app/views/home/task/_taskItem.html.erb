@@ -1,0 +1,17 @@
+<div class="flex flex-col gap-2">
+  <%= link_to "../", root_path %>
+  <%= render partial: 'home/task/task_item_content', 
+    locals: { title: 'Status', content: @task.status } %>
+
+  <%= render partial: 'home/task/task_item_content', 
+    locals: { title: 'Name', content: @task.name } %>
+
+  <%= render partial: 'home/task/task_item_content', 
+    locals: { title: 'Description', content: @task.description } %>
+
+  <%= render partial: 'home/task/task_item_content', 
+    locals: { title: 'Category', content: @task.category.name } %>
+
+  <%= render partial: 'home/task/task_item_content', 
+    locals: { title: 'Due Date', content: @task.due_date } %>
+</div>

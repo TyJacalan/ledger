@@ -7,6 +7,11 @@ class TasksController < ApplicationController
 
   def show
     @task = current_user.tasks.find(params[:id])
+    render turbo_stream:
+      turbo_stream.replace(
+        'taskList',
+        partial: 'home/task/taskItem'
+      )
   end
 
   def new
@@ -15,11 +20,11 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.build(task_params)
-      if @task.save
-        redirect_to root_path, notice: "Task was successfully created"
-      else
-        redirect_to root_path, alert: "Something went wrong!"
-      end
+    if @task.save
+      redirect_to root_path, notice: 'Task was successfully created'
+    else
+      redirect_to root_path, alert: 'Something went wrong!'
+    end
   end
 
   def edit
@@ -30,15 +35,15 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to root_path, notice: "Task was successfully updated."
+      redirect_to root_path, notice: 'Task was successfully updated.'
     else
-      redirect_to root_path, alert: "Something went wrong!"
+      redirect_to root_path, alert: 'Something went wrong!'
     end
   end
 
   def destroy 
     @task.destroy
-    redirect_to root_path, notice: "Task was successfully deleted."
+    redirect_to root_path, notice: 'Task was successfully deleted.'
   end
 
   private
