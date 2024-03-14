@@ -56,4 +56,16 @@
         font-family: "Menlo", "ui-monospace", monospace;
     }
 
+    input[type] {
+        @apply px-0 bg-background text-muted-foreground border-none focus:outline-none focus:ring-0 text-sm;
+    }
+    
+    input[type="submit"] {
+        @apply h-fit w-full bg-foreground text-background px-2 py-1 mx-auto mt-4;
+    }
+
+    input[type="checkbox"] {
+        @apply bg-secondary rounded-md;
+    }
+
 }
