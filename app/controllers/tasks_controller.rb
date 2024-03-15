@@ -28,9 +28,11 @@ class TasksController < ApplicationController
   end
 
   def edit
-    respond_to do |format|
-      format.js { render partial: '/home/task_edit_form', locals: { task: @task } }
-    end
+    render turbo_stream:
+      turbo_stream.replace(
+        'taskList',
+        partial: 'home/task/edit'
+      )
   end
 
   def update

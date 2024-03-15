@@ -56,8 +56,8 @@
         font-family: "Menlo", "ui-monospace", monospace;
     }
 
-    input[type] {
-        @apply px-0 bg-background text-muted-foreground border-none focus:outline-none focus:ring-0 text-sm;
+    input[type], select {
+        @apply w-full px-0 bg-background text-muted-foreground border-none focus:outline-none focus:ring-0 text-sm;
     }
     
     input[type="submit"] {
@@ -68,4 +68,14 @@
         @apply bg-secondary rounded-md;
     }
 
+}
+
+@layer components {
+	.selected-item {
+		@apply bg-secondary
+	}
+
+	.task-edit-input {
+		@apply h-full w-full p-0 bg-transparent text-sm border-none focus:outline-none focus:ring-0;
+	}
 }

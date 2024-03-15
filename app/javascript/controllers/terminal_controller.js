@@ -160,7 +160,7 @@ export default class extends Controller {
                 this.editCategory(selectedItem);
                 break;
             case "taskItem":
-                console.log("task")
+                this.editTask(selectedItem);
                 break;
         }
     }
@@ -175,5 +175,9 @@ export default class extends Controller {
 
     editTask(selectedItem) {
         const taskId = selectedItem.dataset.taskId
+
+        fetch(`/tasks/${taskId}/edit`, { headers: { Accept: "text/vnd.turbo-stream.html" } })
+            .then(r => r.text())
+            .then(html => Turbo.renderStreamMessage(html))
     }
 }
