@@ -50,9 +50,9 @@ export default class extends Controller {
         this.activeList.forEach((element, index) => {
             if(index === this.indexValue){
                 element.focus()
-                element.classList.add("bg-secondary")
+                element.classList.add("selected-item")
             } else {
-              element.classList.remove("bg-secondary")
+                element.classList.remove("selected-item")
             }
         })
     }
@@ -65,8 +65,8 @@ export default class extends Controller {
     }
 
     removeHighlights(list) {
-        list.forEach((element, index) => {
-            element.classList.remove("bg-secondary")
+        list.forEach((element) => {
+            element.classList.remove("selected-item");
         })
     }
 
