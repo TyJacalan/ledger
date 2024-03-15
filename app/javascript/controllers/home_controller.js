@@ -49,7 +49,6 @@ export default class extends Controller {
     }
 
     showToast() {
-        console.log("showing toast")
         window.dispatchEvent(new CustomEvent("show-toast"))
     }
 }
