@@ -1,4 +1,4 @@
-<h1 class="text-primary px-1 mb-2 text-nowrap">Categories</h1>
+<h1 class="text-primary px-1 mb-4 text-nowrap">Categories</h1>
 <ul id="category-list" class="flex flex-row md:flex-col items-start justify-start gap-4 overflow-x-auto">
   <% @categories.each do |category| %>
     <%= turbo_frame_tag "categoryItem#{category.id}", class: "w-full" do %>
