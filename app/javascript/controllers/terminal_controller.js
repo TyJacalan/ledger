@@ -68,6 +68,9 @@ export default class extends Controller {
             case ":T":
                 this.showTaskForm()
                 break;
+            case ":E":
+                this.handleEdit()
+                break;
         }
     }
 
@@ -145,5 +148,32 @@ export default class extends Controller {
             .catch(error => {
                 console.error('Error creating task:', error);
             });
+    }
+
+    handleEdit() {
+        const selectedItem = document.querySelector(".selected-item");
+        const type = selectedItem.dataset.managerTarget
+
+
+        switch(type){
+            case "categoryItem":
+                this.editCategory(selectedItem);
+                break;
+            case "taskItem":
+                console.log("task")
+                break;
+        }
+    }
+
+    editCategory(selectedItem) {
+        const categoryId = selectedItem.dataset.categoryId;
+
+        fetch(`/categories/${categoryId}/edit`, { headers: { Accept: "text/vnd.turbo-stream.html" } })
+            .then(r => r.text())
+            .then(html => Turbo.renderStreamMessage(html))
+    }
+
+    editTask(selectedItem) {
+        const taskId = selectedItem.dataset.taskId
     }
 }

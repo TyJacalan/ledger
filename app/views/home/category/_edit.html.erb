@@ -1,0 +1,9 @@
+<%= form_with(model: @category,
+              id: "category-edit-form",
+              url: category_path(@category),
+              method: "patch",
+              class: "h-fit w-fit p-0 m-0 bg-none text-foreground text-sm border-none focus:outline-none focus:ring-0",
+              remote: true) do |form| %>
+  <%= form.text_field :name, size: @category.name.length, class: "p-0 m-0", style: "padding-left: 4px"%>
+  <%= form.submit "", class: "hidden" %>
+<% end %>
