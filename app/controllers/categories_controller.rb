@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:edit, :update]
+  before_action :set_category, only: [:edit, :update, :destroy]
 
   def create
     @category = current_user.categories.build(category_params)
@@ -24,6 +24,12 @@ class CategoriesController < ApplicationController
     else
       redirect_to root_path, alert: "Something went wrong"
     end
+  end
+
+  def destroy 
+    @category.destroy
+
+    render turbo_stream: turbo_stream.remove("categoryItem#{@category.id}")
   end
 
   private

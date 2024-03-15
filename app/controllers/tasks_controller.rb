@@ -45,7 +45,8 @@ class TasksController < ApplicationController
 
   def destroy 
     @task.destroy
-    redirect_to root_path, notice: 'Task was successfully deleted.'
+
+    render turbo_stream: turbo_stream.remove("taskListItem#{@task.id}")
   end
 
   private

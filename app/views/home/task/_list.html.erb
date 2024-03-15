@@ -7,13 +7,15 @@
       <%= render partial: 'home/shared/list_item', locals: { attr_value: "Due Date", class: "w-2/6" } %>
     </div>
     <% @tasks.each do |task| %>
-      <%= link_to task_path(task), class: "flex w-full px-1 focus-visible:outline-none", data: { user_id: task.user_id, task_id: task.id, manager_target: "taskItem" } do %>
-        <div class="h-full w-1/6 flex items-center justify-start">
-          <span class="h-2 w-2 <%= task.status ? 'bg-green-400' : 'bg-red-400' %>"></span>
-        </div>
-        <%= render partial: 'home/shared/list_item', locals: { attr_value: task.name, class: "w-full" } %>
-        <%= render partial: 'home/shared/list_item', locals: { attr_value: task.category.name, class: "w-2/6" } %>
-        <%= render partial: 'home/shared/list_item', locals: { attr_value: task.formatted_due_date, class: "w-2/6"} %>
+      <%= link_to task_path(task), class: "w-full", class: "focus-visible:outline-none", data: { user_id: task.user_id, task_id: task.id, manager_target: "taskItem" } do %>
+        <%= turbo_frame_tag "taskListItem#{task.id}", class: "flex h-full w-full px-1 focus-visible:outline-none" do %>
+          <div class="h-full w-1/6 flex items-center justify-start">
+            <span class="h-2 w-2 <%= task.status ? 'bg-green-400' : 'bg-red-400' %>"></span>
+          </div>
+          <%= render partial: 'home/shared/list_item', locals: { attr_value: task.name, class: "w-full" } %>
+          <%= render partial: 'home/shared/list_item', locals: { attr_value: task.category.name, class: "w-2/6" } %>
+          <%= render partial: 'home/shared/list_item', locals: { attr_value: task.formatted_due_date, class: "w-2/6"} %>
+        <% end %>
       <% end %>
     <% end %>
   </div>

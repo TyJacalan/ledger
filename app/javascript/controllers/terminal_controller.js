@@ -59,6 +59,7 @@ export default class extends Controller {
 
     handleCommandForm() {
         const command = this.commandFieldTarget.value.trim()
+        const selectedItem = document.querySelector('.selected-item')
         this.commandFieldTarget.value = ""
 
         switch (command) {
@@ -69,7 +70,10 @@ export default class extends Controller {
                 this.showTaskForm()
                 break;
             case ":E":
-                this.handleEdit()
+                this.handleEdit(selectedItem)
+                break;
+            case ":D":
+                this.handleDestroy(selectedItem)
                 break;
         }
     }
@@ -150,18 +154,33 @@ export default class extends Controller {
             });
     }
 
-    handleEdit() {
-        const selectedItem = document.querySelector(".selected-item");
-        const type = selectedItem.dataset.managerTarget
+    handleEdit(selectedItem) {
+        if(selectedItem){
+            const type = selectedItem.dataset.managerTarget
 
+            switch(type){
+                case "categoryItem":
+                    this.editCategory(selectedItem);
+                    break;
+                case "taskItem":
+                    this.editTask(selectedItem);
+                    break;
+            }
+        }
+    }
 
-        switch(type){
-            case "categoryItem":
-                this.editCategory(selectedItem);
-                break;
-            case "taskItem":
-                this.editTask(selectedItem);
-                break;
+    handleDestroy(selectedItem) {
+        if(selectedItem){
+            const type = selectedItem.dataset.managerTarget
+
+            switch(type){
+                case "categoryItem":
+                    this.deleteCategory(selectedItem);
+                    break;
+                case "taskItem":
+                    this.deleteTask(selectedItem);
+                    break;
+            }
         }
     }
 
@@ -169,15 +188,51 @@ export default class extends Controller {
         const categoryId = selectedItem.dataset.categoryId;
 
         fetch(`/categories/${categoryId}/edit`, { headers: { Accept: "text/vnd.turbo-stream.html" } })
-            .then(r => r.text())
+            .then(response => response.text())
             .then(html => Turbo.renderStreamMessage(html))
+            .catch(error => console.error('Error deleting category:', error));
     }
 
     editTask(selectedItem) {
         const taskId = selectedItem.dataset.taskId
 
         fetch(`/tasks/${taskId}/edit`, { headers: { Accept: "text/vnd.turbo-stream.html" } })
-            .then(r => r.text())
+            .then(response => response.text())
             .then(html => Turbo.renderStreamMessage(html))
+            .catch(error => console.error('Error deleting category:', error));
+    }
+
+    deleteCategory(selectedItem){
+        const categoryId = selectedItem.dataset.categoryId;
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+        fetch(`/categories/${categoryId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+            }
+        })
+            .then(response => response.text())
+            .then(html => Turbo.renderStreamMessage(html))
+            .catch(error => console.error('Error deleting category:', error));
+    }
+
+    deleteTask(selectedItem){
+        const taskId = selectedItem.dataset.taskId;
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+        fetch(`/tasks/${taskId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+            }
+        })
+            .then(response => response.text())
+            .then(html => Turbo.renderStreamMessage(html))
+            .catch(error => console.error('Error deleting task:', error));
     }
 }
