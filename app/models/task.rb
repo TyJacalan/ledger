@@ -9,7 +9,7 @@ class Task < ApplicationRecord
   validate :due_date_must_be_greater_than_the_present
 
   scope :filter_by_category, -> (category, user) { where(category_id: category, user_id: user.id) }
-  scope :filter_by_due_date, -> (due_date) { where(due_date: due_date, user_id: user.id) }
+  scope :filter_by_due_date, -> (due_date, user) { where(due_date: due_date, user_id: user.id) }
 
   def formatted_due_date
     due_date.strftime("%b %d")
