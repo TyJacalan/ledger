@@ -1,0 +1,10 @@
+<div 
+  data-home-target="homeBox"
+  data-controller="homebox"
+  data-action="focus->homebox#triggerResetManager"
+  class="h-full w-full rounded-md border-secondary border-[1px] border-solid focus:border-primary outline-none px-2 py-1 overflow-y-auto"
+  <%= "id=#{id}" if defined?(id) && id.present? %> 
+  <%= "tabIndex=#{index}" if defined?(index) && index.present? %>
+>
+  <%= yield %>
+</div>

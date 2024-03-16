@@ -3,6 +3,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
     "tailwind-merge": "^2.2.1"
   }
 }

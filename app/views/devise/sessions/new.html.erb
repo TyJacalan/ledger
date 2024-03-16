@@ -1,13 +1,13 @@
-<div class="flex flex-col h-full w-full items-center justify-center gap-2 text-sm">
-  <h2 class="text-3xl font-bold">Ledger</h2>
+<div class="h-screen w-screen flex flex-col items-center justify-center gap-4 font-mono text-sm">
+  <h2>Log in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field flex flex-col gap-2">
+    <div class="field flex flex-col bg-background">
       <%= f.label :email %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
-    <div class="field flex flex-col gap-2">
+    <div class="flex flex-col">
       <%= f.label :password %>
       <%= f.password_field :password, autocomplete: "current-password" %>
     </div>
@@ -23,7 +23,7 @@
       <%= f.submit "Log in" %>
     </div>
   <% end %>
-
+  
   <div class="flex flex-col h-fit w-full items-center justify-center mt-4 text-xs">
     <%= render "devise/shared/links" %>
   </div>

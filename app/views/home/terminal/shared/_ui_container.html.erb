@@ -1,0 +1,4 @@
+<div data-terminal-target="ui" class="h-full w-full" <%= "id=#{id}" if defined?(id) && id.present? %> <%= "data-action=#{data_action}" if defined?(data_action) && data_action.present? %>>
+  <%= yield %>
+</div>
+

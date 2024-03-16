@@ -1,0 +1,25 @@
+<%= turbo_frame_tag "taskList" do %>
+  <div id="task-list" class="h-full w-full flex flex-col gap-2">
+    <div class="h-fit w-full flex flex-row px-1 mb-2 text-nowrap text-primary text-start">
+      <%= render partial: 'home/shared/list_item', locals: { attr_value: "Status", class: "w-1/6" } %>
+      <%= render partial: 'home/shared/list_item', locals: { attr_value: "Name", class: "w-full" } %>
+      <%= render partial: 'home/shared/list_item', locals: { attr_value: "Category", class: "w-2/6" } %>
+      <%= render partial: 'home/shared/list_item', locals: { attr_value: "Due Date", class: "w-2/6" } %>
+    </div>
+    <% if params.slice(:category, :due_date).values.any?(&:present?) %>
+      <%= link_to "../", root_path %>
+    <% end %>
+    <% @tasks.each do |task| %>
+      <%= link_to task_path(task), class: "w-full focus-visible:outline-none", data: { user_id: task.user_id, task_id: task.id, manager_target: "taskItem", status: task.status } do %>
+        <%= turbo_frame_tag "taskListItem#{task.id}", class: "flex h-full w-full px-1 focus-visible:outline-none" do %>
+          <div class="h-full w-1/6 flex items-center justify-start">
+            <span class="h-2 w-2 <%= task.status ? 'bg-green-400' : 'bg-red-400' %>"></span>
+          </div>
+          <%= render partial: 'home/shared/list_item', locals: { attr_value: task.name, class: "w-full" } %>
+          <%= render partial: 'home/shared/list_item', locals: { attr_value: task.category.name, class: "w-2/6" } %>
+          <%= render partial: 'home/shared/list_item', locals: { attr_value: task.formatted_due_date, class: "w-2/6"} %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

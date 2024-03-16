@@ -52,60 +52,30 @@
 		@apply bg-background text-foreground;
 	}
 
-}
+    html {
+        font-family: "Menlo", "ui-monospace", monospace;
+    }
 
+    input[type], select {
+        @apply w-full px-0 bg-background text-muted-foreground border-none focus:outline-none focus:ring-0 text-sm;
+    }
+    
+    input[type="submit"] {
+        @apply h-fit w-full bg-foreground text-background px-2 py-1 mx-auto mt-4;
+    }
+
+    input[type="checkbox"] {
+        @apply w-4 bg-secondary rounded-md;
+    }
+
+}
 
 @layer components {
-	.home-box {
-		@apply px-4 py-2 rounded-md border border-input;
+	.selected-item {
+		@apply bg-secondary
 	}
 
-	#new_user {
-		@apply flex flex-col gap-2;
+	.task-edit-input {
+		@apply h-full w-full p-0 bg-transparent text-sm border-none focus:outline-none focus:ring-0;
 	}
-
-	.field input {
-		@apply bg-transparent rounded-md text-sm;
-	}
-
-	.actions input[type="submit"] {
-	@apply flex items-center justify-center w-full bg-foreground text-background mt-4 py-1 px-4 rounded-md text-sm;
-	}
-
-	#category-edit-form input[type="text"], #task-edit-form input[type="text"], #terminal-task input[type="text"] {
-		@apply h-fit bg-transparent text-sm text-muted-foreground px-0 py-0 outline-none border-hidden focus:outline-none focus:border-hidden focus:ring-0;
-	}
-
-	#task-list li, #task-edit-form {
-		display: grid;
-		grid-template-columns: repeat(7, minmax(0, 1fr));
-		align-items: center;
-		gap: 1rem;
-		height: 2rem;
-	}
-
-	#task-list li div, #task_name, #task_description, #task_due_date {
-		grid-column: span 2 / span 2;
-		overflow-y: hidden;
-		overflow-x: auto;
-	}
-
-	#task-list li div:nth-child(2), #task_category_id {
-		grid-column: span 1 / span 1;
-	}
-
-	.scrollbar-none::-webkit-scrollbar {
-		display: none;
-	}
-}
-
-@layer utilities {
-	.active {
-		@apply bg-foreground text-background;
-	}
-
-	.custom-datepicker::-webkit-calendar-picker-indicator {
-		filter: invert(100%);
-	}
-
 }

@@ -1,0 +1,19 @@
+<%= render partial: 'home/terminal/helper', 
+  locals: { id: 'terminal-helper' }, 
+  layout: 'home/terminal/shared/ui_container' 
+%>
+<%= render partial: 'home/terminal/command_form', 
+  locals: { id: 'terminal-command-form' },
+  layout: 'home/terminal/shared/ui_container' 
+%> 
+<%= render partial: 'home/terminal/category_form', 
+  locals: { id: 'terminal-category-form' }, 
+  layout: 'home/terminal/shared/ui_container' 
+%>
+<%= render partial: 'home/terminal/task_form', 
+  locals: { 
+    id: 'terminal-task-form', 
+    data_action: 'keydown.enter->terminal#handleTaskForm' 
+  }, 
+  layout: 'home/terminal/shared/ui_container' 
+%> 

@@ -1,44 +1,35 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token, only: :edit
-  
-  def index
-    @category = current_user.categories.all
-  end
-
-  def show
-  end
-
-  def new
-    @category = current_user.categories.new
-  end
+  before_action :set_category, only: [:edit, :update, :destroy]
 
   def create
     @category = current_user.categories.build(category_params)
     if @category.save
-      redirect_to root_path, notice: "Category was successfully created."
-    else 
-      redirect_to root_path, alert: "Something went wrong!"
-    end
-  end
-
-  def edit
-    respond_to do |format|
-      format.js { render partial: '/home/category_edit_form', locals: { category: @category } }
-    end
-  end
-
-  def update
-    if @category.update(category_params)
-      redirect_to root_path, notice: "Category was successfully updated."
+      redirect_to root_path, notice: "Category was successfully created"
     else
       redirect_to root_path, alert: "Something went wrong!"
     end
   end
 
-  def destroy
+  def edit
+    render turbo_stream:
+      turbo_stream.replace(
+        "categoryItem#{@category.id}",
+        partial: 'home/category/edit'
+      )
+  end
+
+  def update
+    if @category.update(category_params)
+      redirect_to root_path, notice: "Category was successfully updated"
+    else
+      redirect_to root_path, alert: "Something went wrong"
+    end
+  end
+
+  def destroy 
     @category.destroy
-    redirect_to root_path, notice: "Category was successfully deleted."
+
+    render turbo_stream: turbo_stream.remove("categoryItem#{@category.id}")
   end
 
   private
@@ -48,6 +39,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :user_id)
   end
 end

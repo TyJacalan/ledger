@@ -1,0 +1,10 @@
+<%= render_input name: "terminal-category", 
+  id: "terminal-category", 
+  autocomplete: true, 
+  placeholder: "Enter a category name", 
+  variant: :borderless, 
+  data: { 
+    terminal_target: "categoryField",
+    action: "keydown.enter->terminal#handleCategoryForm"
+  } 
+%>

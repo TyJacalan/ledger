@@ -1,0 +1,15 @@
+<div class="h-full w-full flex flex-col items-start justify-start gap-2">
+    <%= link_to "../", root_path %>
+    <%= form_with(model: @task,
+            id: "task-edit-form",
+            url: task_path(@task),
+            method: "patch",
+            class: "h-fit w-full flex flex-col items-start justify-center gap-2",
+            remote: true) do |form| %>
+        <%= form.text_field :name, class: "task-edit-input"%>
+        <%= form.collection_select :category_id, Category.all, :id, :name, {}, class: "task-edit-input" %>
+        <%= form.text_area :description, class: "task-edit-input" %>
+        <%= form.date_field :due_date, class: "task-edit-input"%>
+        <%= form.submit "", class: "hidden" %>
+    <% end %>
+</div>

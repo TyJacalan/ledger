@@ -1,0 +1,5 @@
+<% default_classes = "scrollbar-none overflow-hidden whitespace-nowrap" %>
+<%= content_tag :div, 
+  attr_value, 
+  class: "#{default_classes} #{local_assigns[:class]}"
+%>

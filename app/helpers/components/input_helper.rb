@@ -1,11 +1,11 @@
 module Components::InputHelper
   def render_input(name:, label: false, id: nil, type: :text, value: nil, **options)
-    options[:class] = "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm transition-colors ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 #{options[:class]} "
+    options[:class] = "flex h-full w-full rounded-md border-none bg-background px-3 py-2 text-sm transition-colors ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 #{options[:class]} "
     options[:class] << case options[:variant]
     when :borderless
       " border-0 focus-visible:outline-none focus-visible:shadow-none focus-visible:ring-transparent"
     else
-      "focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-muted"
+      "shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:border-muted"
     end
     options[:class] = tw(options[:class])
 
@@ -19,6 +19,7 @@ module Components::InputHelper
       autocapitalize: (options[:autocapitalize] || nil),
       autocorrect: (options[:autocorrect] || nil)
     )
+    
     render partial: "components/ui/input", locals: {
       type:,
       label:,
