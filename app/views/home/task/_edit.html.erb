@@ -7,7 +7,6 @@
             class: "h-fit w-full flex flex-col items-start justify-center gap-2",
             remote: true) do |form| %>
         <%= form.text_field :name, class: "task-edit-input"%>
-        <%= form.select :status, options_for_select(["True", "False"], @task.status ? "True" : "False"), {}, class: "task-edit-input" %>
         <%= form.collection_select :category_id, Category.all, :id, :name, {}, class: "task-edit-input" %>
         <%= form.text_area :description, class: "task-edit-input" %>
         <%= form.date_field :due_date, class: "task-edit-input"%>

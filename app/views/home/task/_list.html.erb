@@ -10,7 +10,7 @@
       <%= link_to "../", root_path %>
     <% end %>
     <% @tasks.each do |task| %>
-      <%= link_to task_path(task), class: "w-full focus-visible:outline-none", data: { user_id: task.user_id, task_id: task.id, manager_target: "taskItem" } do %>
+      <%= link_to task_path(task), class: "w-full focus-visible:outline-none", data: { user_id: task.user_id, task_id: task.id, manager_target: "taskItem", status: task.status } do %>
         <%= turbo_frame_tag "taskListItem#{task.id}", class: "flex h-full w-full px-1 focus-visible:outline-none" do %>
           <div class="h-full w-1/6 flex items-center justify-start">
             <span class="h-2 w-2 <%= task.status ? 'bg-green-400' : 'bg-red-400' %>"></span>

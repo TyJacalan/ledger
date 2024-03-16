@@ -75,6 +75,9 @@ export default class extends Controller {
             case ":D":
                 this.handleDestroy(selectedItem)
                 break;
+            case ":S":
+                this.toggleStatus(selectedItem)
+                break;
             case ":X":
                 this.handleLogout()
                 break;
@@ -234,15 +237,36 @@ export default class extends Controller {
                 'X-CSRF-Token': csrfToken
             }
         })
-            .then(response => response.text())
+            .then(response => { 
+                response.text() 
+                //Turbo.visit(window.location.href, { action: "replace" });
+            })
             .then(html => Turbo.renderStreamMessage(html))
             .catch(error => console.error('Error deleting task:', error));
     }
 
+    toggleStatus(selectedItem) {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+        const taskId = selectedItem.dataset.taskId
+        let status = selectedItem.dataset.status === "true"
+
+        fetch(`/tasks/${taskId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+            },
+            body: JSON.stringify({ task: { status: !status } })
+        })
+            .then(response => {
+                response.text()
+                window.location.href = "/"
+            })
+            .catch(error => console.error('Error toggling status:', error))
+    }
+
     handleLogout() {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-
-        console.log("logging out...")
 
         fetch('/users/sign_out', {
             method: 'DELETE',

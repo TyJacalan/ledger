@@ -86,15 +86,19 @@ export default class extends Controller {
     }
 
     showTask(selectedItem) {
-        const taskId = selectedItem.dataset.taskId
-            
-        fetch(`/tasks/${taskId}`, { headers: { Accept: "text/vnd.turbo-stream.html" } })
-            .then(response => response.text())
-            .then(html => Turbo.renderStreamMessage(html))
-            .catch(error => console.error('Error showing task:', error));
+        if(selectedItem){
+            const taskId = selectedItem.dataset.taskId
+                
+            fetch(`/tasks/${taskId}`, { headers: { Accept: "text/vnd.turbo-stream.html" } })
+                .then(response => response.text())
+                .then(html => Turbo.renderStreamMessage(html))
+                .catch(error => console.error('Error showing task:', error));
+        }
     }
 
     filterTask(selectedItem, param) {
+        if(selectedItem){
+        
         const id = selectedItem.dataset.categoryId || selectedItem.dataset.dueDateId
     
         fetch(`/?${param}=${id}`)
@@ -104,5 +108,6 @@ export default class extends Controller {
                 }
             })
             .catch(error => console.error('Error filtering tasks:', error));
+        }
     }
 }
