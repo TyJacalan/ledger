@@ -65,7 +65,7 @@
     }
 
     input[type="checkbox"] {
-        @apply bg-secondary rounded-md;
+        @apply w-4 bg-secondary rounded-md;
     }
 
 }
