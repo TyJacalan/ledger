@@ -51,8 +51,10 @@ export default class extends Controller {
         const dueDateContainerIsSelected = this.indexValue >= 0 && this.activeContainerIndex === 2
         const selectedItem = document.querySelector(".selected-item")
 
-        if(categoryContainerIsSelected || dueDateContainerIsSelected){
-            this.filterTask(selectedItem)
+        if(categoryContainerIsSelected){
+            this.filterTask(selectedItem, 'category')
+        } else if (dueDateContainerIsSelected) {
+            this.filterTask(selectedItem, 'due_date')
         } else {
             this.showTask(selectedItem)
         }
@@ -92,13 +94,13 @@ export default class extends Controller {
             .catch(error => console.error('Error showing task:', error));
     }
 
-    filterTask(selectedItem) {
-        const id = selectedItem.dataset.categoryId;
+    filterTask(selectedItem, param) {
+        const id = selectedItem.dataset.categoryId || selectedItem.dataset.dueDateId
     
-        fetch(`/?category=${id}`)
+        fetch(`/?${param}=${id}`)
             .then(response => {
                 if(response.ok){
-                    window.location.href = `/?category=${id}`
+                    window.location.href = `/?${param}=${id}`
                 }
             })
             .catch(error => console.error('Error filtering tasks:', error));
