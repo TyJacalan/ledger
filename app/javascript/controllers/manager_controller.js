@@ -72,12 +72,14 @@ export default class extends Controller {
 
     showTask() {
         if(this.indexValue >= 0 && this.activeContainerIndex === 1){
-            
-          const link = document.querySelector('#task-list a')
 
-          if (link) {
-            link.click();
-          }
+        const selectedItem = document.querySelector(".selected-item")
+        const taskId = selectedItem.dataset.taskId
+            
+        fetch(`/tasks/${taskId}`, { headers: { Accept: "text/vnd.turbo-stream.html" } })
+            .then(response => response.text())
+            .then(html => Turbo.renderStreamMessage(html))
+            .catch(error => console.error('Error showing task:', error));
         }
     }
 }
