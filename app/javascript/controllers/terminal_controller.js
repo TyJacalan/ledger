@@ -75,6 +75,9 @@ export default class extends Controller {
             case ":D":
                 this.handleDestroy(selectedItem)
                 break;
+            case ":X":
+                this.handleLogout()
+                break;
         }
     }
 
@@ -234,5 +237,26 @@ export default class extends Controller {
             .then(response => response.text())
             .then(html => Turbo.renderStreamMessage(html))
             .catch(error => console.error('Error deleting task:', error));
+    }
+
+    handleLogout() {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+        console.log("logging out...")
+
+        fetch('/users/sign_out', {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-Token': csrfToken
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "/users/sign_in";
+                } else {
+                    console.error('Logout failed');
+                }
+            })
+            .catch(error => console.error("Error:", error));
     }
 }
