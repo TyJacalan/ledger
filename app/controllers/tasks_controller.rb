@@ -1,9 +1,5 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  
-  def index 
-    @tasks = current_user.tasks
-  end
 
   def show
     @task = current_user.tasks.find(params[:id])
@@ -12,10 +8,6 @@ class TasksController < ApplicationController
         'taskList',
         partial: 'home/task/taskItem'
       )
-  end
-
-  def new
-    @task = current_user.tasks.new
   end
 
   def create

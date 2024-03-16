@@ -46,6 +46,19 @@ export default class extends Controller {
         })
     }
 
+    handleKeyDownEnter(){
+        const categoryContainerIsSelected = this.indexValue >= 0 && this.activeContainerIndex === 0
+        const dueDateContainerIsSelected = this.indexValue >= 0 && this.activeContainerIndex === 2
+        const selectedItem = document.querySelector(".selected-item")
+
+        if(categoryContainerIsSelected || dueDateContainerIsSelected){
+            this.filterTask(selectedItem)
+        } else {
+            this.showTask(selectedItem)
+        }
+
+    }
+
     highlightCurrentItem() {
         this.activeList.forEach((element, index) => {
             if(index === this.indexValue){
@@ -70,16 +83,24 @@ export default class extends Controller {
         })
     }
 
-    showTask() {
-        if(this.indexValue >= 0 && this.activeContainerIndex === 1){
-
-        const selectedItem = document.querySelector(".selected-item")
+    showTask(selectedItem) {
         const taskId = selectedItem.dataset.taskId
             
         fetch(`/tasks/${taskId}`, { headers: { Accept: "text/vnd.turbo-stream.html" } })
             .then(response => response.text())
             .then(html => Turbo.renderStreamMessage(html))
             .catch(error => console.error('Error showing task:', error));
-        }
+    }
+
+    filterTask(selectedItem) {
+        const id = selectedItem.dataset.categoryId;
+    
+        fetch(`/?category=${id}`)
+            .then(response => {
+                if(response.ok){
+                    window.location.href = `/?category=${id}`
+                }
+            })
+            .catch(error => console.error('Error filtering tasks:', error));
     }
 }
